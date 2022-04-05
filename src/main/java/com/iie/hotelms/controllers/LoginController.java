@@ -31,7 +31,7 @@ public class LoginController {
 
     private void checkLogin() throws IOException {
         HotelMS log = new HotelMS();
-        if (username.getText().toString().equals("administracja") && password.getText().toString().equals("administracja")) {
+        if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
             wrong.setText("Pomyślnie");
             log.changeScene("/admin/adminscreen.fxml");
         } else if (username.getText().toString().equals("pracownik") && password.getText().toString().equals("pracownik")) {
