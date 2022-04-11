@@ -17,6 +17,7 @@ public class HotelMS extends Application {
         stg = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HotelMS.class.getResource("/splashscreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
