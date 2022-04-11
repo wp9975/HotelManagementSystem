@@ -108,6 +108,15 @@ public class ReceptionController implements Initializable {
 
         }
 
+    @FXML
+    private void checkinchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/checkinscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 // ______________________________________________________________________________________
