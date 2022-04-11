@@ -1,4 +1,4 @@
-package com.iie.hotelms.controllers.reception;
+package com.iie.hotelms.controllers;
 
 import com.iie.hotelms.HotelMS;
 import javafx.fxml.FXML;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CheckinController implements Initializable {
+public class ReceptionCheckInController implements Initializable {
 
     @FXML
     private Pane paneb;
@@ -30,17 +30,17 @@ public class CheckinController implements Initializable {
         paneb.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
     }
 
-//    @FXML
-//    private void back(MouseEvent event) {
-//
-//        HotelMS log = new HotelMS();
-//        try {
-//            log.changeScene("/reception/receptionscreen.fxml");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
+    @FXML
+    private void back(MouseEvent event) {
+
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/receptionscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 }

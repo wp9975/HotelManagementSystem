@@ -28,7 +28,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane4" layoutX="256.0" layoutY="380.0" onMouseEntered="#pane4_hover" onMouseExited="#pane4_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane4" onMouseClicked="#guestlistchange" layoutX="256.0" layoutY="380.0" onMouseEntered="#pane4_hover" onMouseExited="#pane4_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="68.0" layoutY="187.0" text="Lista gości">
                <font>
@@ -42,7 +42,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane3" layoutX="775.0" layoutY="120.0" onMouseEntered="#pane3_hover" onMouseExited="#pane3_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane3" onMouseClicked="#serviceschange" layoutX="775.0" layoutY="120.0" onMouseEntered="#pane3_hover" onMouseExited="#pane3_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="36.0" layoutY="186.0" text="Usługi hotelowe">
                <font>
@@ -56,7 +56,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane2" layoutX="517.0" layoutY="120.0" onMouseEntered="#pane2_hover" onMouseExited="#pane2_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane2" onMouseClicked="#checkoutchange" layoutX="517.0" layoutY="120.0" onMouseEntered="#pane2_hover" onMouseExited="#pane2_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="40.0" layoutY="187.0" text="Wymeldowanie">
                <font>
@@ -70,7 +70,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane5" layoutX="517.0" layoutY="380.0" onMouseEntered="#pane5_hover" onMouseExited="#pane5_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane5" onMouseClicked="#reservationchange" layoutX="517.0" layoutY="380.0" onMouseEntered="#pane5_hover" onMouseExited="#pane5_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="64.0" layoutY="188.0" text="Rezerwacje">
                <font>

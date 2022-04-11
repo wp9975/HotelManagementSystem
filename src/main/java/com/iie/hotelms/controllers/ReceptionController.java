@@ -118,6 +118,46 @@ public class ReceptionController implements Initializable {
         }
     }
 
+    @FXML
+    private void checkoutchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/checkoutscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void guestlistchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/guestlistscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void serviceschange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/servicesscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void reservationchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/reservationscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 // ______________________________________________________________________________________
 
