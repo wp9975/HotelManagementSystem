@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,6 +25,7 @@
                 </ImageView>
             </children>
         </Pane>
+      <ListView layoutX="58.0" layoutY="114.0" prefHeight="567.0" prefWidth="968.0" />
     </children>
 
 </AnchorPane>
