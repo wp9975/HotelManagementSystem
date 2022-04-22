@@ -1,6 +1,7 @@
 module com.iie.hotelms {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.iie.hotelms to javafx.fxml;
