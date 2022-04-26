@@ -26,7 +26,7 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
     @FXML
-    private TableColumn<Pracownik, String> AddressColumn;
+    private TableColumn<Pracownik, String> IdColumn;
 
     @FXML
     private TableColumn<Pracownik, String> EmailColumn;
@@ -56,10 +56,8 @@ public class AdminWorkerslistScreen implements Initializable {
     private TableView<Pracownik> table;
 
     @FXML
-    private TextField txtAddress;
+    private ChoiceBox txtDepartment;
 
-    @FXML
-    private DatePicker txtBirthday;
 
     @FXML
     private TextField txtEmail;
@@ -67,8 +65,6 @@ public class AdminWorkerslistScreen implements Initializable {
     @FXML
     private TextField txtLastName;
 
-    @FXML
-    private TextField txtLogin;
 
     @FXML
     private TextField txtName;
@@ -81,25 +77,21 @@ public class AdminWorkerslistScreen implements Initializable {
 
     @FXML
     void Add(ActionEvent event) {
-        String login = txtLogin.getText();
+        String email = txtEmail.getText();
         String haslo = txtPassword.getText();
         String imie = txtName.getText();
         String nazwisko = txtLastName.getText();
-        String adres = txtAddress.getText();
         String telefon = txtPhone.getText();
-        String email = txtEmail.getText();
-        String data_urodzenia = "1992-02-22";
+
 
         try{
-            pst = con.prepareStatement("insert into pracownicy(login,haslo,imie,nazwisko,adres_zamieszkania,telefon,data_urodzenia,email) values(?,?,?,?,?,?,?,?)");
-            pst.setString(1, login);
+            pst = con.prepareStatement("insert into workers(email,password,first_name,last_name,phone,id_department) values(?,?,?,?,?,1)");
+            pst.setString(1, email);
             pst.setString(2, haslo);
             pst.setString(3, imie);
             pst.setString(4, nazwisko);
-            pst.setString(5, adres);
-            pst.setString(6, telefon);
-            pst.setString(7, data_urodzenia);
-            pst.setString(8, email);
+            pst.setString(5, telefon);
+
             pst.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -155,26 +147,21 @@ public class AdminWorkerslistScreen implements Initializable {
 
         String phone = String.valueOf(table.getItems().get(myIndex).getTelefon());
 
-        String login = txtLogin.getText();
+        String email = txtEmail.getText();
         String haslo = txtPassword.getText();
         String imie = txtName.getText();
         String nazwisko = txtLastName.getText();
-        String adres = txtAddress.getText();
-
-        String email = txtEmail.getText();
-        String data_urodzenia = "1993-02-06";
+        String id_worker = String.valueOf(table.getItems().get(myIndex).getId());
 
         try
         {
-            pst = con.prepareStatement("update pracownicy set login = ?,haslo = ? ,imie = ?, nazwisko = ?, adres_zamieszkania = ?, email = ?, data_urodzenia = ? where telefon = ? ");
-            pst.setString(1, login);
+            pst = con.prepareStatement("update workers set email = ?,password = ? ,first_name = ?, last_name = ?, phone = ? where id_worker = ? ");
+            pst.setString(1, email);
             pst.setString(2, haslo);
             pst.setString(3, imie);
             pst.setString(4, nazwisko);
-            pst.setString(5, adres);
-            pst.setString(6, email);
-            pst.setString(7, data_urodzenia);
-            pst.setString(8, phone);
+            pst.setString(5, phone);
+            pst.setString(6, id_worker);
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Student Registationn");
@@ -230,28 +217,30 @@ public class AdminWorkerslistScreen implements Initializable {
         ObservableList<Pracownik> pracownicy = FXCollections.observableArrayList();
         try
         {
-            pst = con.prepareStatement("select id_pracownika, login, haslo, imie, nazwisko, adres_zamieszkania, telefon, email from pracownicy");
+            pst = con.prepareStatement("select id_worker, email, password, first_name, last_name, phone, id_department from workers");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next())
                 {
                     Pracownik st = new Pracownik();
-                    st.setLogin(rs.getString("login"));
-                    st.setHaslo(rs.getString("haslo"));
-                    st.setImie(rs.getString("imie"));
-                    st.setNazwisko(rs.getString("nazwisko"));
-                    st.setAdres(rs.getString("adres_zamieszkania"));
-                    st.setTelefon(rs.getString("telefon"));
+                    st.setId(rs.getInt("id_worker"));
                     st.setEmail(rs.getString("email"));
+                    st.setPassword(rs.getString("password"));
+                    st.setImie(rs.getString("first_name"));
+                    st.setNazwisko(rs.getString("last_name"));
+                    st.setTelefon(rs.getString("phone"));
+
+
                     pracownicy.add(st);
                 }
             }
             table.setItems(pracownicy);
+            EmailColumn.setCellValueFactory(f -> f.getValue().emailProperty());
             NameColumn.setCellValueFactory(f -> f.getValue().imieProperty());
             LastNameColumn.setCellValueFactory(f -> f.getValue().nazwiskoProperty());
-            AddressColumn.setCellValueFactory(f -> f.getValue().adresProperty());
             PhoneColumn.setCellValueFactory(f -> f.getValue().telefonProperty());
-            EmailColumn.setCellValueFactory(f -> f.getValue().emailProperty());
+            IdColumn.setCellValueFactory(f -> f.getValue().idProperty().asString());
+
 
         }
 
@@ -267,13 +256,12 @@ public class AdminWorkerslistScreen implements Initializable {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty()))
                 {
                     myIndex =  table.getSelectionModel().getSelectedIndex();
-                    txtLogin.setText(table.getItems().get(myIndex).getLogin());
-                    txtPassword.setText(table.getItems().get(myIndex).getHaslo());
+                    txtEmail.setText(table.getItems().get(myIndex).getEmail());
+                    txtPassword.setText(table.getItems().get(myIndex).getPassword());
                     txtName.setText(table.getItems().get(myIndex).getImie());
                     txtLastName.setText(table.getItems().get(myIndex).getNazwisko());
-                    txtAddress.setText(table.getItems().get(myIndex).getAdres());
                     txtPhone.setText(table.getItems().get(myIndex).getTelefon());
-                    txtEmail.setText(table.getItems().get(myIndex).getEmail());
+
 
                 }
             });
