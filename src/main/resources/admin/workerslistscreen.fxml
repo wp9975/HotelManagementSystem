@@ -97,11 +97,12 @@
       </Pane>
       <TableView fx:id="table" layoutX="548.0" layoutY="122.0" prefHeight="549.0" prefWidth="702.0">
         <columns>
-          <TableColumn fx:id="NameColumn" prefWidth="103.0" text="Imie" />
-          <TableColumn fx:id="LastNameColumn" prefWidth="121.0" text="Nazwisko" />
-            <TableColumn fx:id="PhoneColumn" prefWidth="133.0" text="Telefon" />
-            <TableColumn fx:id="EmailColumn" prefWidth="119.0" text="Email" />
-            <TableColumn fx:id="IdColumn" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="IdColumn" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="NameColumn" prefWidth="132.0" text="Imie" />
+          <TableColumn fx:id="LastNameColumn" prefWidth="148.0" text="Nazwisko" />
+            <TableColumn fx:id="EmailColumn" prefWidth="127.0" text="Email" />
+            <TableColumn fx:id="PhoneColumn" prefWidth="116.0" text="Telefon" />
+            <TableColumn prefWidth="138.0" text="Dział" />
         </columns>
       </TableView>
    </children>
