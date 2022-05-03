@@ -102,7 +102,7 @@
           <TableColumn fx:id="LastNameColumn" prefWidth="148.0" text="Nazwisko" />
             <TableColumn fx:id="EmailColumn" prefWidth="127.0" text="Email" />
             <TableColumn fx:id="PhoneColumn" prefWidth="116.0" text="Telefon" />
-            <TableColumn prefWidth="138.0" text="Dział" />
+            <TableColumn fx:id="DeptColumn" prefWidth="138.0" text="Dział" />
         </columns>
       </TableView>
    </children>

@@ -2,7 +2,8 @@ package com.iie.hotelms.controllers;
 
 import com.iie.hotelms.DatabaseConnection;
 import com.iie.hotelms.HotelMS;
-import com.iie.hotelms.admin.Pracownik;
+import com.iie.hotelms.admin.Department;
+import com.iie.hotelms.admin.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,19 +27,22 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
     @FXML
-    private TableColumn<Pracownik, String> IdColumn;
+    private TableColumn<Worker, String> IdColumn;
 
     @FXML
-    private TableColumn<Pracownik, String> EmailColumn;
+    private TableColumn<Worker, String> EmailColumn;
 
     @FXML
-    private TableColumn<Pracownik, String> LastNameColumn;
+    private TableColumn<Worker, String> DeptColumn;
 
     @FXML
-    private TableColumn<Pracownik, String> NameColumn;
+    private TableColumn<Worker, String> LastNameColumn;
 
     @FXML
-    private TableColumn<Pracownik, String> PhoneColumn;
+    private TableColumn<Worker, String> NameColumn;
+
+    @FXML
+    private TableColumn<Worker, String> PhoneColumn;
 
     @FXML
     private Button btnAdd;
@@ -53,7 +57,7 @@ public class AdminWorkerslistScreen implements Initializable {
     private Pane paneb;
 
     @FXML
-    private TableView<Pracownik> table;
+    private TableView<Worker> table;
 
     @FXML
     private ChoiceBox txtDepartment;
@@ -115,13 +119,14 @@ public class AdminWorkerslistScreen implements Initializable {
     @FXML
     void Delete(ActionEvent event) {
 
-        String phone = String.valueOf(table.getItems().get(myIndex).getTelefon());
+        myIndex = table.getSelectionModel().getSelectedIndex();
+        id = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getId()));
 
 
         try
         {
-            pst = con.prepareStatement("delete from pracownicy where telefon = ? ");
-            pst.setString(1, phone);
+            pst = con.prepareStatement("delete from workers where id_worker = ? ");
+            pst.setInt(1, id);
             pst.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -145,13 +150,12 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
 
-        String phone = String.valueOf(table.getItems().get(myIndex).getTelefon());
-
+        String phone = txtPhone.getText();
         String email = txtEmail.getText();
         String haslo = txtPassword.getText();
         String imie = txtName.getText();
         String nazwisko = txtLastName.getText();
-        String id_worker = String.valueOf(table.getItems().get(myIndex).getId());
+        Integer id_worker = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getId()));
 
         try
         {
@@ -161,7 +165,7 @@ public class AdminWorkerslistScreen implements Initializable {
             pst.setString(3, imie);
             pst.setString(4, nazwisko);
             pst.setString(5, phone);
-            pst.setString(6, id_worker);
+            pst.setInt(6, id_worker);
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Student Registationn");
@@ -210,37 +214,38 @@ public class AdminWorkerslistScreen implements Initializable {
     PreparedStatement pst;
     int myIndex;
     int id;
+    int id_dept;
 
     public void table()
     {
         Connect();
-        ObservableList<Pracownik> pracownicy = FXCollections.observableArrayList();
+        ObservableList<Worker> pracownicy = FXCollections.observableArrayList();
         try
         {
-            pst = con.prepareStatement("select id_worker, email, password, first_name, last_name, phone, id_department from workers");
+            pst = con.prepareStatement("select id_worker, email, password, first_name, last_name, phone, workers.id_department , departments.dept_name from workers join departments on workers.id_department=departments.id_department");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next())
                 {
-                    Pracownik st = new Pracownik();
+                    Worker st = new Worker();
                     st.setId(rs.getInt("id_worker"));
                     st.setEmail(rs.getString("email"));
                     st.setPassword(rs.getString("password"));
-                    st.setImie(rs.getString("first_name"));
-                    st.setNazwisko(rs.getString("last_name"));
-                    st.setTelefon(rs.getString("phone"));
-
-
+                    st.setName(rs.getString("first_name"));
+                    st.setLastname(rs.getString("last_name"));
+                    st.setPhone(rs.getString("phone"));
+                    st.setIdDepartment(rs.getInt("id_department"));
+                    st.setDeptName(rs.getString("dept_name"));
                     pracownicy.add(st);
                 }
             }
             table.setItems(pracownicy);
             EmailColumn.setCellValueFactory(f -> f.getValue().emailProperty());
-            NameColumn.setCellValueFactory(f -> f.getValue().imieProperty());
-            LastNameColumn.setCellValueFactory(f -> f.getValue().nazwiskoProperty());
-            PhoneColumn.setCellValueFactory(f -> f.getValue().telefonProperty());
+            NameColumn.setCellValueFactory(f -> f.getValue().nameProperty());
+            LastNameColumn.setCellValueFactory(f -> f.getValue().lastnameProperty());
+            PhoneColumn.setCellValueFactory(f -> f.getValue().phoneProperty());
             IdColumn.setCellValueFactory(f -> f.getValue().idProperty().asString());
-
+            DeptColumn.setCellValueFactory(f -> f.getValue().deptNameProperty());
 
         }
 
@@ -250,7 +255,7 @@ public class AdminWorkerslistScreen implements Initializable {
         }
 
         table.setRowFactory( tv -> {
-            TableRow<Pracownik> myRow = new TableRow<>();
+            TableRow<Worker> myRow = new TableRow<>();
             myRow.setOnMouseClicked (event ->
             {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty()))
@@ -258,9 +263,9 @@ public class AdminWorkerslistScreen implements Initializable {
                     myIndex =  table.getSelectionModel().getSelectedIndex();
                     txtEmail.setText(table.getItems().get(myIndex).getEmail());
                     txtPassword.setText(table.getItems().get(myIndex).getPassword());
-                    txtName.setText(table.getItems().get(myIndex).getImie());
-                    txtLastName.setText(table.getItems().get(myIndex).getNazwisko());
-                    txtPhone.setText(table.getItems().get(myIndex).getTelefon());
+                    txtName.setText(table.getItems().get(myIndex).getName());
+                    txtLastName.setText(table.getItems().get(myIndex).getLastname());
+                    txtPhone.setText(table.getItems().get(myIndex).getPhone());
 
 
                 }
@@ -271,6 +276,28 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
     }
+
+
+    public void setChoiceBox(){
+
+        Connect();
+
+        try {
+            pst = con.prepareStatement("select id_department, dept_name from departments;");
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+
+                    txtDepartment.getItems().add(rs.getString("dept_name"));
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
 
     public void Connect()
@@ -287,8 +314,11 @@ public class AdminWorkerslistScreen implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         Connect();
         table();
+        setChoiceBox();
     }
 
 
