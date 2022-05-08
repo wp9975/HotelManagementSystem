@@ -6,6 +6,7 @@ import com.iie.hotelms.admin.Worker;
 import com.iie.hotelms.reception.Room;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -124,7 +125,7 @@ public class ReceptionCheckInController implements Initializable {
         ObservableList<Room> rooms = FXCollections.observableArrayList();
         try
         {
-            pst = dbLink.prepareStatement("select id_room, room_number, capacity, price from room where id_room_type = ? ");
+            pst = dbLink.prepareStatement("select id_room, room_number, capacity, price from room where id_room_type = ? AND status = 1 ");
             pst.setInt(1, id_room_type);
             ResultSet rs = pst.executeQuery();
             {
@@ -164,8 +165,93 @@ public class ReceptionCheckInController implements Initializable {
             return myRow;
         });
 
-        System.out.println(id_room_type + type);
+
+
     }
+    @FXML
+    public void add(ActionEvent event){
+
+        Integer id_room = table.getItems().get(myIndex).getIdRoom();
+        Integer numOfAdults = Integer.parseInt(txtnumberofadults.getText());
+        Integer numOfChildren = Integer.parseInt(txtnumberofchildren.getText());
+        String name = txtname.getText();
+        String lastName = txtlastname.getText();
+        String address = txtadress.getText();
+        String city = txtcity.getText();
+        String country = txtcountry.getText();
+        String email = txtemail.getText();
+        String phone = txtphone.getText();
+
+        Integer idGuest = 0;
+
+        System.out.println(id_room);
+
+        try{
+            pst = dbLink.prepareStatement("insert into guest(first_name, last_name, address, city, country, phone, email) values (?,?,?,?,?,?,?)");
+            pst.setString(1,name);
+            pst.setString(2,lastName);
+            pst.setString(3,address);
+            pst.setString(4,city);
+            pst.setString(5,country);
+            pst.setString(6,phone);
+            pst.setString(7,email);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            pst = dbLink.prepareStatement("select id_guest from guest where phone= ?;");
+            pst.setString(1, phone);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+                    idGuest = rs.getInt("id_guest");
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(idGuest);
+
+        java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+        System.out.println(date);
+        try{
+            pst = dbLink.prepareStatement("insert into reservation(check_in, adults, children, id_guest, id_room) values (?,?,?,?,?)");
+            pst.setTimestamp(1,date);
+            pst.setInt(2,numOfAdults);
+            pst.setInt(3,numOfChildren);
+            pst.setInt(4,idGuest);
+            pst.setInt(5,id_room);
+            pst.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Zakwaterowanie");
+
+            alert.setHeaderText("Zakwaterowano");
+            alert.setContentText("Zakwaterowano nowego gościa!");
+
+            alert.showAndWait();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            pst = dbLink.prepareStatement("update room set status = 2 where id_room = ? ");
+            pst.setInt(1, id_room);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
 
 
 

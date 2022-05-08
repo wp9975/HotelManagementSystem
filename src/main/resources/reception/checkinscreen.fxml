@@ -123,7 +123,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="submit" layoutX="1069.0" layoutY="455.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="118.0" text="Check In" />
+      <Button fx:id="submit" layoutX="1069.0" layoutY="455.0" mnemonicParsing="false" onAction="#add" prefHeight="67.0" prefWidth="118.0" text="Check In" />
       <Button fx:id="clear" layoutX="1069.0" layoutY="538.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="118.0" text="Reset" />
    </children>
 </AnchorPane>
