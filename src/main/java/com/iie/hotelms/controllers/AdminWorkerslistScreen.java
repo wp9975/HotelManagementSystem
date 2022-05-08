@@ -86,15 +86,34 @@ public class AdminWorkerslistScreen implements Initializable {
         String imie = txtName.getText();
         String nazwisko = txtLastName.getText();
         String telefon = txtPhone.getText();
+        String department = String.valueOf(txtDepartment.getValue());
+        int idDept = 1;
+
+        try {
+            pst = con.prepareStatement("select id_department from departments where dept_name= ?;");
+            pst.setString(1, department);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+                    idDept = rs.getInt("id_department");
+
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
         try{
-            pst = con.prepareStatement("insert into workers(email,password,first_name,last_name,phone,id_department) values(?,?,?,?,?,1)");
+            pst = con.prepareStatement("insert into workers(email,password,first_name,last_name,phone,id_department) values(?,?,?,?,?,?)");
             pst.setString(1, email);
             pst.setString(2, haslo);
             pst.setString(3, imie);
             pst.setString(4, nazwisko);
             pst.setString(5, telefon);
+            pst.setInt(6, idDept);
 
             pst.executeUpdate();
 
@@ -147,9 +166,6 @@ public class AdminWorkerslistScreen implements Initializable {
     @FXML
     void Update(ActionEvent event) {
 
-
-
-
         String phone = txtPhone.getText();
         String email = txtEmail.getText();
         String haslo = txtPassword.getText();
@@ -157,15 +173,35 @@ public class AdminWorkerslistScreen implements Initializable {
         String nazwisko = txtLastName.getText();
         Integer id_worker = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getId()));
 
+        String department = String.valueOf(txtDepartment.getValue());
+        int idDept = 1;
+
+        try {
+            pst = con.prepareStatement("select id_department from departments where dept_name= ?;");
+            pst.setString(1, department);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+                    idDept = rs.getInt("id_department");
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         try
         {
-            pst = con.prepareStatement("update workers set email = ?,password = ? ,first_name = ?, last_name = ?, phone = ? where id_worker = ? ");
+            pst = con.prepareStatement("update workers set email = ?,password = ? ,first_name = ?, last_name = ?, phone = ?, id_department = ? where id_worker = ? ");
             pst.setString(1, email);
             pst.setString(2, haslo);
             pst.setString(3, imie);
             pst.setString(4, nazwisko);
             pst.setString(5, phone);
-            pst.setInt(6, id_worker);
+            pst.setInt(6, idDept);
+            pst.setInt(7, id_worker);
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Student Registationn");
@@ -185,30 +221,6 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
 
-
-
-    @FXML
-    private void paneb_mexit(MouseEvent event) {
-        paneb.setStyle("-fx-background-color: bisque; -fx-background-radius: 6px;");
-    }
-
-    @FXML
-    private void paneb_hover(MouseEvent event) {
-        paneb.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
-    }
-
-
-    @FXML
-    private void back(MouseEvent event) {
-
-        HotelMS log = new HotelMS();
-        try {
-            log.changeScene("/admin/adminscreen.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     Connection con;
     PreparedStatement pst;
@@ -266,7 +278,7 @@ public class AdminWorkerslistScreen implements Initializable {
                     txtName.setText(table.getItems().get(myIndex).getName());
                     txtLastName.setText(table.getItems().get(myIndex).getLastname());
                     txtPhone.setText(table.getItems().get(myIndex).getPhone());
-
+                    txtDepartment.setValue(table.getItems().get(myIndex).getDeptName());
 
                 }
             });
@@ -311,6 +323,32 @@ public class AdminWorkerslistScreen implements Initializable {
             ex.printStackTrace();
         }
     }
+
+
+
+    @FXML
+    private void paneb_mexit(MouseEvent event) {
+        paneb.setStyle("-fx-background-color: bisque; -fx-background-radius: 6px;");
+    }
+
+    @FXML
+    private void paneb_hover(MouseEvent event) {
+        paneb.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
+    }
+
+
+    @FXML
+    private void back(MouseEvent event) {
+
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/admin/adminscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

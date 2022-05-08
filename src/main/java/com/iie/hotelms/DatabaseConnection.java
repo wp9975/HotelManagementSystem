@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class DatabaseConnection {
 
-    public Connection dbLink;
+    public static Connection dbLink;
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
         String dbName = "hotelms";
         String dbUser = "root";
         String dbPassword = "root";
