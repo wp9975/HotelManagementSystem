@@ -12,7 +12,7 @@ public class CheckOutTable {
     private final FloatProperty bill;
 
 
-
+// tab
     public CheckOutTable() {
         this.name = new SimpleStringProperty(this,"name");
         this.lastName = new SimpleStringProperty(this,"lastName");
