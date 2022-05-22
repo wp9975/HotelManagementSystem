@@ -4,17 +4,17 @@ import com.iie.hotelms.DatabaseConnection;
 import com.iie.hotelms.HotelMS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
 
-public class LoginController {
+import static com.iie.hotelms.DatabaseConnection.dbLink;
+
+public class LoginController implements Initializable {
 
     public LoginController() {
 
@@ -31,48 +31,66 @@ public class LoginController {
     @FXML
     private Label showname;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        DatabaseConnection.getConnection();
+
+    }
+
     public void userLogin(ActionEvent event) throws IOException {
         checkLogin();
     }
 
     private void checkLogin() throws IOException {
         HotelMS log = new HotelMS();
-        if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-            wrong.setText("Pomyślnie");
-            log.changeScene("/admin/adminscreen.fxml");
-        } else if (username.getText().toString().equals("pracownik") && password.getText().toString().equals("pracownik")) {
-            wrong.setText("Pomyślnie");
+        String email;
+        PreparedStatement statement;
+        ResultSet rs;
 
-            log.changeScene("/workers/workersscreen.fxml");
-        } else if (username.getText().toString().equals("recepcja") && password.getText().toString().equals("recepcja")) {
-            wrong.setText("Pomyślnie!");
+        try {
+                email = username.getText();
+                statement = dbLink.prepareStatement("select password, id_department from workers where email=?");
+                statement.setString(1,email);
+                rs = statement.executeQuery();
 
-            log.changeScene("/reception/receptionscreen.fxml");
-        } else if (username.getText().isEmpty() && password.getText().isEmpty()) {
-            wrong.setText("Wpisz odpowiednie dane!");
-        } else {
-            wrong.setText("Błędne login lub hasło");
-       }
-    }
-
-    public void connectButton(ActionEvent event){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-
-        String query = "SELECT imie FROM pracownicy";
-
-        try{
-            Statement statement = connectDB.createStatement();
-            ResultSet queryOutput = statement.executeQuery(query);
-            while (queryOutput.next()){
-                showname.setText(queryOutput.getString("imie"));
+                if (!rs.isBeforeFirst()){
+                    System.out.println("Bark maila w bazie");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Niepoprawne dane");
+                    alert.show();
+                }
+                else {
+                    while (rs.next()){
+                        String retrivedPassword = rs.getString("password");
+                        Integer id_department = rs.getInt("id_department");
+                        if(retrivedPassword.equals(password.getText())){
+                            if(id_department == 1){
+                                log.changeScene("/admin/adminscreen.fxml");
+                            }
+                            else if(id_department == 2){
+                                log.changeScene("/reception/receptionscreen.fxml");
+                            }
+                            else{
+                                log.changeScene("/workers/workersscreen.fxml");
+                            }
+                        }
+                        else{
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setContentText("Niepoprawne dane");
+                            alert.show();
+                        }
+                    }
+                }
             }
-        }
-        catch (Exception e){
+        catch (SQLException e){
             e.printStackTrace();
         }
 
+
+
     }
+
+
 
 
 }
