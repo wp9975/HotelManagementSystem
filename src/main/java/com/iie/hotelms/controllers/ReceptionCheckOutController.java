@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -22,7 +23,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.iie.PDFGenerator.PDF.savePdF;
 import static com.iie.hotelms.DatabaseConnection.dbLink;
+
 
 public class ReceptionCheckOutController implements Initializable {
 
@@ -46,6 +49,14 @@ public class ReceptionCheckOutController implements Initializable {
 
     int myIndex;
     PreparedStatement pst;
+
+    public void invoice() throws FileNotFoundException {
+        savePdF("C:/Users/DeskAme/Desktop/pdfs/sample.pdf",23, "Marian Kowalski", "Rzeszow, Downigd", "12312332", "zaq213sd"
+                , "Gotówka", 345, "145", 70, "Basen", 3, 345, 0 );
+
+
+
+    }
 
 
     public void table(){
@@ -90,6 +101,7 @@ public class ReceptionCheckOutController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DatabaseConnection.getConnection();
         table();
+
     }
 
     @FXML
