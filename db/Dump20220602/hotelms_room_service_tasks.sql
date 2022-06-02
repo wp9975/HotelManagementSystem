@@ -16,29 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `room_service_types`
+-- Table structure for table `room_service_tasks`
 --
 
-DROP TABLE IF EXISTS `room_service_types`;
+DROP TABLE IF EXISTS `room_service_tasks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `room_service_types` (
-  `id_room_service_type` int NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `id_tasks` int NOT NULL,
-  PRIMARY KEY (`id_room_service_type`),
-  KEY `id_tasks` (`id_tasks`),
-  CONSTRAINT `room_service_types_ibfk_1` FOREIGN KEY (`id_tasks`) REFERENCES `room_service_tasks` (`id_room_service_tasks`)
+CREATE TABLE `room_service_tasks` (
+  `id_room_service_tasks` int NOT NULL,
+  `1` text,
+  `2` text,
+  `3` text,
+  `4` text,
+  `5` text,
+  PRIMARY KEY (`id_room_service_tasks`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `room_service_types`
+-- Dumping data for table `room_service_tasks`
 --
 
-LOCK TABLES `room_service_types` WRITE;
-/*!40000 ALTER TABLE `room_service_types` DISABLE KEYS */;
-/*!40000 ALTER TABLE `room_service_types` ENABLE KEYS */;
+LOCK TABLES `room_service_tasks` WRITE;
+/*!40000 ALTER TABLE `room_service_tasks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `room_service_tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-26 22:19:40
+-- Dump completed on 2022-06-02 21:51:32

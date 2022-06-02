@@ -16,34 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `workers`
+-- Table structure for table `booking_services`
 --
 
-DROP TABLE IF EXISTS `workers`;
+DROP TABLE IF EXISTS `booking_services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `workers` (
-  `id_worker` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(70) NOT NULL,
-  `phone` varchar(45) NOT NULL,
-  `id_department` int NOT NULL,
-  PRIMARY KEY (`id_worker`),
-  KEY `id_department` (`id_department`),
-  CONSTRAINT `workers_ibfk_1` FOREIGN KEY (`id_department`) REFERENCES `departments` (`id_department`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `booking_services` (
+  `id_booking_services` int NOT NULL,
+  `status` tinyint NOT NULL,
+  `id_service` int NOT NULL,
+  `start_date` timestamp NOT NULL,
+  `end_date` timestamp NULL DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  PRIMARY KEY (`id_booking_services`),
+  KEY `id_service` (`id_service`),
+  CONSTRAINT `booking_services_ibfk_1` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `workers`
+-- Dumping data for table `booking_services`
 --
 
-LOCK TABLES `workers` WRITE;
-/*!40000 ALTER TABLE `workers` DISABLE KEYS */;
-INSERT INTO `workers` VALUES (2,'wp@wp.pl','password','Jan','Kowalski','123123123',1);
-/*!40000 ALTER TABLE `workers` ENABLE KEYS */;
+LOCK TABLES `booking_services` WRITE;
+/*!40000 ALTER TABLE `booking_services` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_services` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-26 22:19:40
+-- Dump completed on 2022-06-02 21:51:31

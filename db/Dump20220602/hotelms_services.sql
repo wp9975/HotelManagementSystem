@@ -16,33 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `guest`
+-- Table structure for table `services`
 --
 
-DROP TABLE IF EXISTS `guest`;
+DROP TABLE IF EXISTS `services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `guest` (
-  `id_guest` int NOT NULL,
-  `first_name` varchar(45) NOT NULL,
-  `last_name` varchar(70) NOT NULL,
-  `address` varchar(300) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `country` varchar(100) NOT NULL,
-  `phone` varchar(12) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `ID_number` varchar(30) NOT NULL,
-  PRIMARY KEY (`id_guest`)
+CREATE TABLE `services` (
+  `id_service` int NOT NULL,
+  `name` varchar(70) NOT NULL,
+  `description` text,
+  `price_hourly` float NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_service`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `guest`
+-- Dumping data for table `services`
 --
 
-LOCK TABLES `guest` WRITE;
-/*!40000 ALTER TABLE `guest` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guest` ENABLE KEYS */;
+LOCK TABLES `services` WRITE;
+/*!40000 ALTER TABLE `services` DISABLE KEYS */;
+/*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-26 22:19:39
+-- Dump completed on 2022-06-02 21:51:31

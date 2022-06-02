@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.ReceptionCheckOutController">
    <children>
-      <Text layoutX="511.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check Out">
+      <Text layoutX="450.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wymeldowanie">
          <font>
             <Font size="56.0" />
          </font>
@@ -26,8 +29,8 @@
             </ImageView>
          </children>
       </Pane>
-      <Button layoutX="1095.0" layoutY="619.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="115.0" text="Wymelduj" />
-      <Button layoutX="1095.0" layoutY="533.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="115.0" text="Drukuj fakturę" />
+      <Button layoutX="1095.0" layoutY="619.0" mnemonicParsing="false" onAction="#checkout" prefHeight="63.0" prefWidth="115.0" text="Wymelduj" />
+      <Button layoutX="1095.0" layoutY="533.0" mnemonicParsing="false" onAction="#invoice" prefHeight="63.0" prefWidth="115.0" text="Drukuj fakturę" />
       <TableView fx:id="table" layoutX="58.0" layoutY="128.0" prefHeight="549.0" prefWidth="650.0">
         <columns>
           <TableColumn fx:id="colRoomNumber" prefWidth="87.0" text="Numer pokoju" />
@@ -37,5 +40,19 @@
             <TableColumn fx:id="colBill" prefWidth="163.0" text="Do zapłaty" />
         </columns>
       </TableView>
+      <TextField fx:id="txtadress" layoutX="730.0" layoutY="188.0" prefHeight="40.0" prefWidth="250.0" promptText="Adres" />
+      <TextField fx:id="txtname" layoutX="730.0" layoutY="138.0" prefHeight="40.0" prefWidth="121.0" promptText="Imię" />
+      <TextField fx:id="txtreservationid" layoutX="730.0" layoutY="236.0" prefHeight="40.0" prefWidth="250.0" promptText="Numer rezerwacji" />
+      <TextField fx:id="txtbill" layoutX="1000.0" layoutY="283.0" prefHeight="40.0" prefWidth="250.0" promptText="Rachunek" />
+      <TextField fx:id="txtroomnumber" layoutX="730.0" layoutY="283.0" prefHeight="40.0" prefWidth="250.0" promptText="Numer pokoju" />
+      <TextField fx:id="txtservices" layoutX="1000.0" layoutY="138.0" prefHeight="40.0" prefWidth="250.0" promptText="Dodatkowe usługi" />
+      <TextField fx:id="txtdaysinhotel" layoutX="1000.0" layoutY="188.0" prefHeight="40.0" prefWidth="250.0" promptText="Doby hotelowe" />
+      <TextField fx:id="txtroomprice" layoutX="1000.0" layoutY="236.0" prefHeight="40.0" prefWidth="250.0" promptText="Cena za dobę" />
+      <Line endX="430.0" layoutX="830.0" layoutY="353.0" startX="-100.0" />
+      <TextField fx:id="txtnip" layoutX="730.0" layoutY="393.0" prefHeight="40.0" prefWidth="250.0" promptText="Numer NIP" />
+      <TextField fx:id="txtpaid" layoutX="730.0" layoutY="506.0" prefHeight="40.0" prefWidth="250.0" promptText="Zapłacono" />
+      <TextField fx:id="txtleft" layoutX="730.0" layoutY="565.0" prefHeight="40.0" prefWidth="250.0" promptText="Pozostało do spłaty" />
+      <ChoiceBox fx:id="txtpaymentmethod" layoutX="730.0" layoutY="447.0" prefHeight="40.0" prefWidth="250.0" />
+      <TextField fx:id="txtlastname" layoutX="852.0" layoutY="138.0" prefHeight="40.0" prefWidth="128.0" promptText="Nazwisko" />
    </children>
 </AnchorPane>
