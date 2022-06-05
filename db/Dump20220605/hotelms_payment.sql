@@ -16,27 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `departments`
+-- Table structure for table `payment`
 --
 
-DROP TABLE IF EXISTS `departments`;
+DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `departments` (
-  `id_department` int NOT NULL,
-  `dept_name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id_department`)
+CREATE TABLE `payment` (
+  `id_payment` int NOT NULL,
+  `id_guest` int NOT NULL,
+  `id_reservation` int NOT NULL,
+  `type` enum('Karta płatnicza','Gotówka','BLIK') NOT NULL,
+  `date` date NOT NULL,
+  `invoice` blob,
+  PRIMARY KEY (`id_payment`),
+  KEY `id_reservation` (`id_reservation`),
+  KEY `payment_ibfk_1_idx` (`id_guest`),
+  CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`),
+  CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`id_reservation`) REFERENCES `reservation` (`id_reservation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `departments`
+-- Dumping data for table `payment`
 --
 
-LOCK TABLES `departments` WRITE;
-/*!40000 ALTER TABLE `departments` DISABLE KEYS */;
-INSERT INTO `departments` VALUES (1,'Administracja'),(2,'Recepcja'),(3,'Sprzątanie'),(4,'Pranie/Prasowanie'),(5,'Gastronomia');
-/*!40000 ALTER TABLE `departments` ENABLE KEYS */;
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 21:51:31
+-- Dump completed on 2022-06-05 20:19:41

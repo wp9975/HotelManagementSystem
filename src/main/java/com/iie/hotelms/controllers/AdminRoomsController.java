@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.iie.hotelms.DatabaseConnection.dbLink;
+
 public class AdminRoomsController implements Initializable {
 
     @FXML
@@ -61,7 +63,7 @@ public class AdminRoomsController implements Initializable {
     private TextField txtRoomNumber;
 
     @FXML
-    private ChoiceBox<?> txtRoomType;
+    private ChoiceBox txtRoomType;
 
     @FXML
     private TableView<Room> table;
@@ -73,17 +75,153 @@ public class AdminRoomsController implements Initializable {
 
     @FXML
     void Add(ActionEvent event) {
+        Integer status = 1;
+        String roomNumber = txtRoomNumber.getText();
+        Integer capacity = Integer.valueOf(txtCapacity.getText());
+        Float price = Float.valueOf(txtPrice.getText());
+
+        String type = String.valueOf(txtRoomType.getValue());
+        int id_room_type = 1 ;
+
+        try {
+            pst = dbLink.prepareStatement("select id_room_type from roomtype where type= ?;");
+            pst.setString(1, type);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+                    id_room_type = rs.getInt("id_room_type");
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try{
+            pst = con.prepareStatement("insert into room(status,room_number,price,id_room_type,capacity) values(?,?,?,?,?)");
+            pst.setInt(1, status);
+            pst.setString(2, roomNumber);
+            pst.setFloat(3, price);
+            pst.setInt(4, id_room_type);
+            pst.setInt(5, capacity);
+
+            pst.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+
+            alert.setHeaderText("Nowy pokój został dodany");
+
+            alert.showAndWait();
+
+            table();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
     @FXML
     void Delete(ActionEvent event) {
 
+        myIndex = table.getSelectionModel().getSelectedIndex();
+        id = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getidRoom()));
+
+
+        try
+        {
+            pst = con.prepareStatement("delete from room where id_room = ? ");
+            pst.setInt(1, id);
+            pst.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setHeaderText("Usunięto pokój");
+
+            alert.showAndWait();
+            table();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
     void Update(ActionEvent event) {
 
+        Integer status = 1;
+        String roomNumber = txtRoomNumber.getText();
+        Integer capacity = Integer.valueOf(txtCapacity.getText());
+        Float price = Float.valueOf(txtPrice.getText());
+
+        myIndex = table.getSelectionModel().getSelectedIndex();
+        id = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getidRoom()));
+
+        String type = String.valueOf(txtRoomType.getValue());
+        int id_room_type = 1 ;
+
+        try {
+            pst = dbLink.prepareStatement("select id_room_type from roomtype where type= ?;");
+            pst.setString(1, type);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+                    id_room_type = rs.getInt("id_room_type");
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try{
+            pst = con.prepareStatement("update room set room_number = ?, price = ?, id_room_type = ?, capacity = ? where id_room = ?");
+            pst.setString(1, roomNumber);
+            pst.setFloat(2, price);
+            pst.setInt(3, id_room_type);
+            pst.setInt(4, capacity);
+            pst.setInt(5, id);
+
+            pst.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+
+            alert.setHeaderText("Zmiany zostały wprowadzone");
+
+            alert.showAndWait();
+
+            table();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setChoiceBox(){
+        Connect();
+
+        try {
+            pst = con.prepareStatement("select id_room_type, type from roomtype;");
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+
+                    txtRoomType.getItems().add(rs.getString("type"));
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void table()
@@ -134,7 +272,7 @@ public class AdminRoomsController implements Initializable {
                     txtRoomNumber.setText(table.getItems().get(myIndex).getroomNumber());
                     txtPrice.setText(String.valueOf(table.getItems().get(myIndex).getprice()));
                     txtCapacity.setText(String.valueOf(table.getItems().get(myIndex).getcapacity()));
-
+                    txtRoomType.setValue(table.getItems().get(myIndex).gettype());
                 }
             });
             return myRow;
@@ -182,6 +320,7 @@ public class AdminRoomsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        setChoiceBox();
         table();
         Connect();
 

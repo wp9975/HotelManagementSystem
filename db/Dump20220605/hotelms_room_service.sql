@@ -16,34 +16,40 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `workers`
+-- Table structure for table `room_service`
 --
 
-DROP TABLE IF EXISTS `workers`;
+DROP TABLE IF EXISTS `room_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `workers` (
-  `id_worker` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(70) NOT NULL,
-  `phone` varchar(45) NOT NULL,
+CREATE TABLE `room_service` (
+  `id_room_service` int NOT NULL,
+  `status` tinyint NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` text,
   `id_department` int NOT NULL,
-  PRIMARY KEY (`id_worker`),
+  `id_worker` int DEFAULT NULL,
+  `id_room` int NOT NULL,
+  `id_room_service_type` int NOT NULL,
+  PRIMARY KEY (`id_room_service`),
   KEY `id_department` (`id_department`),
-  CONSTRAINT `workers_ibfk_1` FOREIGN KEY (`id_department`) REFERENCES `departments` (`id_department`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `id_worker` (`id_worker`),
+  KEY `id_room` (`id_room`),
+  KEY `id_room_service_type` (`id_room_service_type`),
+  CONSTRAINT `room_service_ibfk_1` FOREIGN KEY (`id_department`) REFERENCES `departments` (`id_department`),
+  CONSTRAINT `room_service_ibfk_2` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id_worker`),
+  CONSTRAINT `room_service_ibfk_3` FOREIGN KEY (`id_room`) REFERENCES `room` (`id_room`),
+  CONSTRAINT `room_service_ibfk_4` FOREIGN KEY (`id_room_service_type`) REFERENCES `room_service_types` (`id_room_service_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `workers`
+-- Dumping data for table `room_service`
 --
 
-LOCK TABLES `workers` WRITE;
-/*!40000 ALTER TABLE `workers` DISABLE KEYS */;
-INSERT INTO `workers` VALUES (2,'wp@wp.pl','password','Jan','Kowalski','123123123',1),(4,'wp2@wp.pl','password2','Januszex','Kowalskiewicz','231231321',2),(6,'sprzataczka@wp.pl','password','Janina','Kowalska','213213213',3),(7,'admin@wp.pl','password','Władysław','Adminowski','345345345',1),(8,'recepcjonista@wp.pl','password','Michał','Recepcjonistykowski','876876876',2);
-/*!40000 ALTER TABLE `workers` ENABLE KEYS */;
+LOCK TABLES `room_service` WRITE;
+/*!40000 ALTER TABLE `room_service` DISABLE KEYS */;
+/*!40000 ALTER TABLE `room_service` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 21:51:32
+-- Dump completed on 2022-06-05 20:19:41

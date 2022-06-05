@@ -145,6 +145,7 @@ public class ReceptionCheckInController implements Initializable {
             colprice.setCellValueFactory(f -> f.getValue().priceProperty().asString());
 
 
+
         }
 
         catch (SQLException ex)
