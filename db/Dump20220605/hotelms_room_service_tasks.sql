@@ -16,33 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `guest`
+-- Table structure for table `room_service_tasks`
 --
 
-DROP TABLE IF EXISTS `guest`;
+DROP TABLE IF EXISTS `room_service_tasks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `guest` (
-  `id_guest` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) NOT NULL,
-  `last_name` varchar(70) NOT NULL,
-  `address` varchar(300) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `country` varchar(100) NOT NULL,
-  `phone` varchar(12) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_guest`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `room_service_tasks` (
+  `id_room_service_tasks` int NOT NULL,
+  `1` text,
+  `2` text,
+  `3` text,
+  `4` text,
+  `5` text,
+  PRIMARY KEY (`id_room_service_tasks`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `guest`
+-- Dumping data for table `room_service_tasks`
 --
 
-LOCK TABLES `guest` WRITE;
-/*!40000 ALTER TABLE `guest` DISABLE KEYS */;
-INSERT INTO `guest` VALUES (1,'Jan','Kowalski','Siemienskiego 14','Rzeszow','Polska','123123123','wp@wp.pl'),(2,'Marian','Janusz','Szkolna 17','Warszawa','Poslka','231231231','wp@wp.pl');
-/*!40000 ALTER TABLE `guest` ENABLE KEYS */;
+LOCK TABLES `room_service_tasks` WRITE;
+/*!40000 ALTER TABLE `room_service_tasks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `room_service_tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 21:51:32
+-- Dump completed on 2022-06-05 20:19:40

@@ -16,33 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `room`
+-- Table structure for table `workers`
 --
 
-DROP TABLE IF EXISTS `room`;
+DROP TABLE IF EXISTS `workers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `room` (
-  `id_room` int NOT NULL,
-  `status` enum('Wolny','Zajęty') NOT NULL,
-  `room_number` varchar(6) NOT NULL,
-  `price` float NOT NULL,
-  `id_room_type` int NOT NULL,
-  `capacity` int NOT NULL,
-  PRIMARY KEY (`id_room`),
-  KEY `id_room_type` (`id_room_type`),
-  CONSTRAINT `room_ibfk_1` FOREIGN KEY (`id_room_type`) REFERENCES `roomtype` (`id_room_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `workers` (
+  `id_worker` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(70) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `id_department` int NOT NULL,
+  PRIMARY KEY (`id_worker`),
+  KEY `id_department` (`id_department`),
+  CONSTRAINT `workers_ibfk_1` FOREIGN KEY (`id_department`) REFERENCES `departments` (`id_department`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `room`
+-- Dumping data for table `workers`
 --
 
-LOCK TABLES `room` WRITE;
-/*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'Zajęty','14',120,2,2),(2,'Wolny','23',150,3,2),(3,'Zajęty','24',200,4,3);
-/*!40000 ALTER TABLE `room` ENABLE KEYS */;
+LOCK TABLES `workers` WRITE;
+/*!40000 ALTER TABLE `workers` DISABLE KEYS */;
+INSERT INTO `workers` VALUES (2,'wp@wp.pl','password','Jan','Kowalski','123123123',1),(4,'wp2@wp.pl','password2','Januszex','Kowalskiewicz','231231321',2),(6,'sprzataczka@wp.pl','password','Janina','Kowalska','213213213',3),(7,'admin@wp.pl','password','Władysław','Adminowski','345345345',1),(8,'recepcjonista@wp.pl','password','Michał','Recepcjonistykowski','876876876',2);
+/*!40000 ALTER TABLE `workers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 21:51:31
+-- Dump completed on 2022-06-05 20:19:41

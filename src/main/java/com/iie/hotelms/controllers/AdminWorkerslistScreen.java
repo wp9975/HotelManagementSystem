@@ -118,10 +118,8 @@ public class AdminWorkerslistScreen implements Initializable {
             pst.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Student Registation");
 
-            alert.setHeaderText("Student Registation");
-            alert.setContentText("Record Addedddd!");
+            alert.setHeaderText("Dodano nowego pracownika");
 
             alert.showAndWait();
 
@@ -149,10 +147,8 @@ public class AdminWorkerslistScreen implements Initializable {
             pst.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Student Registationn");
 
-            alert.setHeaderText("Student Registation");
-            alert.setContentText("Deletedd!");
+            alert.setHeaderText("Usunięto pracownika");
 
             alert.showAndWait();
             table();
@@ -204,10 +200,8 @@ public class AdminWorkerslistScreen implements Initializable {
             pst.setInt(7, id_worker);
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Student Registationn");
 
-            alert.setHeaderText("Student Registation");
-            alert.setContentText("Updateddd!");
+            alert.setHeaderText("Zmiany zostały wprowadzone");
 
             alert.showAndWait();
             table();
