@@ -18,6 +18,8 @@ public class AdminController implements Initializable{
     private Pane pane2;
     @FXML
     private Pane pane3;
+    @FXML
+    private Pane pane4;
 
 
 
@@ -58,6 +60,16 @@ public class AdminController implements Initializable{
         pane3.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
     }
 
+    @FXML
+    private void pane4_mexit(MouseEvent event) {
+        pane4.setStyle("-fx-background-color: white; -fx-background-radius: 6px;");
+    }
+
+    @FXML
+    private void pane4_hover(MouseEvent event) {
+        pane4.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
+    }
+
     // Screen change ____________________________________________________________________________________
     @FXML
     private void exit(MouseEvent event) {
@@ -86,6 +98,16 @@ public class AdminController implements Initializable{
         HotelMS log = new HotelMS();
         try {
             log.changeScene("/admin/statsscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void roomchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/admin/roommanagementscreen.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

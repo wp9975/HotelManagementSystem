@@ -14,7 +14,7 @@
             <Image url="@../img/office_admin.jpg" />
          </image>
       </ImageView>
-      <Pane fx:id="pane1" layoutX="197.0" layoutY="221.0" onMouseClicked="#workerslistchange" onMouseEntered="#pane1_hover" onMouseExited="#pane1_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane1" layoutX="193.0" layoutY="126.0" onMouseClicked="#workerslistchange" onMouseEntered="#pane1_hover" onMouseExited="#pane1_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="63.0" layoutY="190.0" text="Pracownicy">
                <font>
@@ -29,7 +29,7 @@
          </children>
       </Pane>
 
-      <Pane fx:id="pane2" layoutX="841.0" layoutY="221.0" onMouseClicked="#exit" onMouseEntered="#pane2_hover" onMouseExited="#pane2_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane2" layoutX="837.0" layoutY="126.0" onMouseClicked="#exit" onMouseEntered="#pane2_hover" onMouseExited="#pane2_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="79.0" layoutY="192.0" text="Wyloguj">
                <font>
@@ -44,9 +44,23 @@
          </children>
       </Pane>
 
-      <Pane fx:id="pane3" layoutX="515.0" layoutY="221.0" onMouseClicked="#statschange" onMouseEntered="#pane3_hover" onMouseExited="#pane3_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane3" layoutX="511.0" layoutY="126.0" onMouseClicked="#statschange" onMouseEntered="#pane3_hover" onMouseExited="#pane3_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="73.0" layoutY="194.0" text="Statystyki">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="135.0" fitWidth="128.0" layoutX="58.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/document.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane4" layoutX="511.0" layoutY="401.0" onMouseClicked="#roomchange" onMouseEntered="#pane4_hover" onMouseExited="#pane4_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="88.0" layoutY="191.0" text="Pokoje">
                <font>
                   <Font size="25.0" />
                </font>
