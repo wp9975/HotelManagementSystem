@@ -14,7 +14,7 @@ public class CheckOutTable {
     private final IntegerProperty id_reservation;
     private final FloatProperty bill;
 
-// 1
+
 // tab
     public CheckOutTable() {
         this.name = new SimpleStringProperty(this,"name");
