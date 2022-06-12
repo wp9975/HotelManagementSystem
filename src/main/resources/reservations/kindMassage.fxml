@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="848.0" style="-fx-background-color: #FFEFD5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.KindMassageController">
+   <children>
+      <TableView layoutX="51.0" layoutY="76.0" prefHeight="439.0" prefWidth="746.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="188.80006408691406" text="Nazwa" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="283.199951171875" text="Opis" />
+            <TableColumn fx:id="priceColumn" prefWidth="60.79998779296875" text="Cena" />
+            <TableColumn fx:id="departmentColumn" prefWidth="140.0" text="Dział" />
+        </columns>
+      </TableView>
+      <Label layoutX="296.0" layoutY="14.0" text="Rodzaje masażu">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

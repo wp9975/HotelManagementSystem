@@ -152,7 +152,7 @@ public class ReceptionController implements Initializable {
     private void reservationchange(MouseEvent event){
         HotelMS log = new HotelMS();
         try {
-            log.changeScene("/reception/reservationscreen.fxml");
+            log.changeScene("/reservations/reservations.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
