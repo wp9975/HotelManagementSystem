@@ -16,34 +16,39 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `workers`
+-- Table structure for table `r_massages_reservation`
 --
 
-DROP TABLE IF EXISTS `workers`;
+DROP TABLE IF EXISTS `r_massages_reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `workers` (
-  `id_worker` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(70) NOT NULL,
-  `phone` varchar(45) NOT NULL,
-  `id_department` int NOT NULL,
-  PRIMARY KEY (`id_worker`),
-  KEY `id_department` (`id_department`),
-  CONSTRAINT `workers_ibfk_1` FOREIGN KEY (`id_department`) REFERENCES `departments` (`id_department`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `r_massages_reservation` (
+  `id_massages_reservation` int NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `start_hour` time NOT NULL,
+  `end_hour` time DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `id_worker` int DEFAULT NULL,
+  `id_massage` int NOT NULL,
+  `id_guest` int NOT NULL,
+  PRIMARY KEY (`id_massages_reservation`),
+  KEY `id_worker` (`id_worker`),
+  KEY `id_massage` (`id_massage`),
+  KEY `id_guest` (`id_guest`),
+  CONSTRAINT `r_massages_reservation_ibfk_1` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id_worker`),
+  CONSTRAINT `r_massages_reservation_ibfk_2` FOREIGN KEY (`id_massage`) REFERENCES `r_massages` (`id_masage`),
+  CONSTRAINT `r_massages_reservation_ibfk_3` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `workers`
+-- Dumping data for table `r_massages_reservation`
 --
 
-LOCK TABLES `workers` WRITE;
-/*!40000 ALTER TABLE `workers` DISABLE KEYS */;
-INSERT INTO `workers` VALUES (2,'wp@wp.pl','password','Jan','Kowalski','123123123',1),(4,'wp2@wp.pl','password2','Januszex','Kowalskiewicz','231231321',2),(6,'sprzataczka@wp.pl','password','Janina','Kowalska','213213213',3),(7,'admin@wp.pl','password','Władysław','Adminowski','345345345',1),(8,'recepcjonista@wp.pl','password','Michał','Recepcjonistykowski','876876876',2);
-/*!40000 ALTER TABLE `workers` ENABLE KEYS */;
+LOCK TABLES `r_massages_reservation` WRITE;
+/*!40000 ALTER TABLE `r_massages_reservation` DISABLE KEYS */;
+INSERT INTO `r_massages_reservation` VALUES (1,'2013-06-20','12:00:00','13:00:00',NULL,NULL,11,1),(2,'2022-06-13','12:00:00','13:00:00',NULL,NULL,11,1);
+/*!40000 ALTER TABLE `r_massages_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-05 20:19:41
+-- Dump completed on 2022-06-12 20:22:08

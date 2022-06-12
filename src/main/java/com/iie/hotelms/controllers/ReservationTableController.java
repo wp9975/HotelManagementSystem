@@ -10,7 +10,7 @@ import javafx.scene.control.ComboBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddResTableController implements Initializable {
+public class ReservationTableController implements Initializable {
 
     @FXML
     private ComboBox startTime;

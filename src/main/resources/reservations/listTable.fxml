@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="848.0" style="-fx-background-color: #FFEFD5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.KindMassageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="848.0" style="-fx-background-color: #FFEFD5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.ReservationKindMassageController">
    <children>
       <TableView layoutX="51.0" layoutY="76.0" prefHeight="439.0" prefWidth="746.0">
          <columns>

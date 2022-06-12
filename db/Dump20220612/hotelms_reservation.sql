@@ -16,32 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `booking_services`
+-- Table structure for table `reservation`
 --
 
-DROP TABLE IF EXISTS `booking_services`;
+DROP TABLE IF EXISTS `reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `booking_services` (
-  `id_booking_services` int NOT NULL,
-  `status` tinyint NOT NULL,
-  `id_service` int NOT NULL,
-  `start_date` timestamp NOT NULL,
-  `end_date` timestamp NULL DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  PRIMARY KEY (`id_booking_services`),
-  KEY `id_service` (`id_service`),
-  CONSTRAINT `booking_services_ibfk_1` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `reservation` (
+  `id_reservation` int NOT NULL AUTO_INCREMENT,
+  `check_in` datetime NOT NULL,
+  `check_out` datetime DEFAULT NULL,
+  `adults` int DEFAULT NULL,
+  `children` int DEFAULT NULL,
+  `bill` float DEFAULT NULL,
+  `id_guest` int NOT NULL,
+  `id_room` int NOT NULL,
+  PRIMARY KEY (`id_reservation`),
+  KEY `id_room` (`id_room`),
+  KEY `reservation_ibfk_1_idx` (`id_guest`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`),
+  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_room`) REFERENCES `room` (`id_room`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `booking_services`
+-- Dumping data for table `reservation`
 --
 
-LOCK TABLES `booking_services` WRITE;
-/*!40000 ALTER TABLE `booking_services` DISABLE KEYS */;
-/*!40000 ALTER TABLE `booking_services` ENABLE KEYS */;
+LOCK TABLES `reservation` WRITE;
+/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
+INSERT INTO `reservation` VALUES (1,'2022-05-08 18:40:02',NULL,2,1,100,1,3),(2,'2022-05-08 18:54:44',NULL,2,1,200,2,1);
+/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-05 20:19:41
+-- Dump completed on 2022-06-12 20:22:07

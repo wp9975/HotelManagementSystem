@@ -6,15 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="848.0" style="-fx-background-color: #FFEFD5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.KindMassageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="848.0" style="-fx-background-color: #FFEFD5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.ReservationKindMassageController">
    <children>
-      <TableView layoutX="51.0" layoutY="76.0" prefHeight="439.0" prefWidth="746.0">
+      <TableView fx:id="table" layoutX="51.0" layoutY="76.0" prefHeight="439.0" prefWidth="746.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nameColumn" prefWidth="188.80006408691406" text="Nazwa" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="283.199951171875" text="Opis" />
-            <TableColumn fx:id="priceColumn" prefWidth="60.79998779296875" text="Cena" />
-            <TableColumn fx:id="departmentColumn" prefWidth="140.0" text="Dział" />
+          <TableColumn fx:id="idColumn" prefWidth="47.0" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="187.0" text="Nazwa" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="440.0" text="Opis" />
+            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="71.0" text="Cena" />
         </columns>
       </TableView>
       <Label layoutX="296.0" layoutY="14.0" text="Rodzaje masażu">
