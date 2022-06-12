@@ -1,6 +1,6 @@
 package com.iie.hotelms.controllers;
 
-import com.iie.hotelms.DatabaseConnection;
+import com.iie.hotelms.database.DatabaseConnection;
 import com.iie.hotelms.HotelMS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-import static com.iie.hotelms.DatabaseConnection.dbLink;
+import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 
 public class LoginController implements Initializable {
 

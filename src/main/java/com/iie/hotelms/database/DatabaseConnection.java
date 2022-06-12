@@ -1,4 +1,4 @@
-package com.iie.hotelms;
+package com.iie.hotelms.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

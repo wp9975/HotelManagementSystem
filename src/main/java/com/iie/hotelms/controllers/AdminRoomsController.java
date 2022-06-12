@@ -2,7 +2,6 @@ package com.iie.hotelms.controllers;
 
 import com.iie.hotelms.HotelMS;
 import com.iie.hotelms.admin.Room;
-import com.iie.hotelms.admin.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +18,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.iie.hotelms.DatabaseConnection.dbLink;
+import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 
 public class AdminRoomsController implements Initializable {
 

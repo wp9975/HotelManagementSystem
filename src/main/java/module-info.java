@@ -9,4 +9,6 @@ module com.iie.hotelms {
     exports com.iie.hotelms;
     exports com.iie.hotelms.controllers;
     opens com.iie.hotelms.controllers to javafx.fxml;
+    exports com.iie.hotelms.database;
+    opens com.iie.hotelms.database to javafx.fxml;
 }

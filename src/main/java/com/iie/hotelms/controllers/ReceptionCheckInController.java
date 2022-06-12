@@ -1,8 +1,7 @@
 package com.iie.hotelms.controllers;
 
-import com.iie.hotelms.DatabaseConnection;
+import com.iie.hotelms.database.DatabaseConnection;
 import com.iie.hotelms.HotelMS;
-import com.iie.hotelms.admin.Worker;
 import com.iie.hotelms.reception.Room;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +21,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.iie.hotelms.DatabaseConnection.dbLink;
+import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 
 public class ReceptionCheckInController implements Initializable {
 

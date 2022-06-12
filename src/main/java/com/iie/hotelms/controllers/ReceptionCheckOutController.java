@@ -1,10 +1,8 @@
 package com.iie.hotelms.controllers;
 
-import com.iie.hotelms.DatabaseConnection;
+import com.iie.hotelms.database.DatabaseConnection;
 import com.iie.hotelms.HotelMS;
-import com.iie.hotelms.admin.Worker;
 import com.iie.hotelms.reception.CheckOutTable;
-import com.iie.hotelms.reception.Room;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,14 +18,12 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.iie.PDFGenerator.PDF.savePdF;
-import static com.iie.hotelms.DatabaseConnection.dbLink;
+import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 
 
 public class ReceptionCheckOutController implements Initializable {
