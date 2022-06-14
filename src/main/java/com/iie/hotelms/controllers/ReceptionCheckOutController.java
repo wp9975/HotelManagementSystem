@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,7 +69,7 @@ public class ReceptionCheckOutController implements Initializable {
     private TextField txtpaid;
 
     @FXML
-    private ChoiceBox<?> txtpaymentmethod;
+    private ChoiceBox txtpaymentmethod;
 
     @FXML
     private TextField txtreservationid;
@@ -83,17 +84,57 @@ public class ReceptionCheckOutController implements Initializable {
     private TextField txtservices;
 
     @FXML
+    private TextField txtPDFDest;
+
+    @FXML
     private TextField txtlastname;
 
     int myIndex;
     PreparedStatement pst;
 
+    protected String getSaltString() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 18) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
+
     public void invoice() throws FileNotFoundException {
 
+        Integer idReservation = Integer.valueOf(txtreservationid.getText());
+        String name = txtname.getText() + " " + txtlastname.getText();
+        String address = txtadress.getText();
+        String nip = txtnip.getText();
+        String invoiceNumber = getSaltString();
+        String payMethod = "Gotówka";
+        Integer bill = Integer.valueOf(txtbill.getText());
+        String roomNumber = txtroomnumber.getText();
+        String addons = " ";
+        Integer daysInHotel = 2;
+        Integer paid= Integer.valueOf(txtpaid.getText());
+
+        Integer leftToPay = bill - paid;
+        Integer roomPrice = Integer.valueOf(txtroomprice.getText());
+
+        String destination2 = txtPDFDest.getText();
+
+        String destination = "C:/Users/DeskAme/Desktop/pdfs/sample.pdf";
+
+        if(destination2 != null){
+            destination = destination2;
+        }
 
 
-        savePdF("C:/Users/DeskAme/Desktop/pdfs/sample.pdf",23, "Marian Kowalski", "Rzeszow, Downigd", "12312332", "zaq213sd"
-                , "Gotówka", 345, "145", 70, "Basen", 3, 345, 0 );
+
+        savePdF(destination,idReservation, name, address, nip, invoiceNumber
+                , payMethod, bill, roomNumber, roomPrice, addons, daysInHotel, paid, leftToPay );
+
 
     }
 
@@ -160,9 +201,9 @@ public class ReceptionCheckOutController implements Initializable {
                     txtname.setText(table.getItems().get(myIndex).getName());
                     txtlastname.setText(table.getItems().get(myIndex).getLastname());
                     txtroomnumber.setText(table.getItems().get(myIndex).getRoomNumber());
-                    txtbill.setText(String.valueOf(table.getItems().get(myIndex).getBill()));
+                    txtbill.setText(String.valueOf(Math.round(table.getItems().get(myIndex).getBill())));
                     txtreservationid.setText(String.valueOf(table.getItems().get(myIndex).getReservationId()));
-                    txtroomprice.setText(String.valueOf(table.getItems().get(myIndex).getPriceNumber()));
+                    txtroomprice.setText(String.valueOf(Math.round(table.getItems().get(myIndex).getPriceNumber())));
                     txtadress.setText(table.getItems().get(myIndex).getAddress());
 
                 }

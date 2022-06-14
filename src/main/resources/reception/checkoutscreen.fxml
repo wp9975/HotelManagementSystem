@@ -49,10 +49,12 @@
       <TextField fx:id="txtdaysinhotel" layoutX="1000.0" layoutY="188.0" prefHeight="40.0" prefWidth="250.0" promptText="Doby hotelowe" />
       <TextField fx:id="txtroomprice" layoutX="1000.0" layoutY="236.0" prefHeight="40.0" prefWidth="250.0" promptText="Cena za dobę" />
       <Line endX="430.0" layoutX="830.0" layoutY="353.0" startX="-100.0" />
-      <TextField fx:id="txtnip" layoutX="730.0" layoutY="393.0" prefHeight="40.0" prefWidth="250.0" promptText="Numer NIP" />
-      <TextField fx:id="txtpaid" layoutX="730.0" layoutY="506.0" prefHeight="40.0" prefWidth="250.0" promptText="Zapłacono" />
-      <TextField fx:id="txtleft" layoutX="730.0" layoutY="565.0" prefHeight="40.0" prefWidth="250.0" promptText="Pozostało do spłaty" />
+      <TextField fx:id="txtPDFDest" layoutX="730.0" layoutY="393.0" prefHeight="40.0" prefWidth="250.0" promptText="PDF" />
+      <TextField fx:id="txtpaid" layoutX="730.0" layoutY="545.0" prefHeight="40.0" prefWidth="250.0" promptText="Zapłacono" />
+      <TextField fx:id="txtleft" layoutX="730.0" layoutY="596.0" prefHeight="40.0" prefWidth="250.0" promptText="Pozostało do spłaty" />
       <ChoiceBox fx:id="txtpaymentmethod" layoutX="730.0" layoutY="447.0" prefHeight="40.0" prefWidth="250.0" />
       <TextField fx:id="txtlastname" layoutX="852.0" layoutY="138.0" prefHeight="40.0" prefWidth="128.0" promptText="Nazwisko" />
+      <Text layoutX="1000.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;-- Ścieżka do zapisu pliku PDF" />
+      <TextField fx:id="txtnip" layoutX="730.0" layoutY="493.0" prefHeight="40.0" prefWidth="250.0" promptText="NIP" />
    </children>
 </AnchorPane>
