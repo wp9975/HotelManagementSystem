@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.WorkersTasklistController">
+
+    <children>
+        <TableView fx:id="table" layoutX="28.0" layoutY="23.0" prefHeight="666.0" prefWidth="1035.0">
+            <columns>
+                <TableColumn fx:id="columnRoomNumber" prefWidth="75.0" text="Nr Pokoju" />
+                <TableColumn id="FirstNameColumn" fx:id="columnId" prefWidth="84.0" text="ID zadania" />
+                <TableColumn fx:id="columnTask" prefWidth="426.0" text="Nazwa" />
+                <TableColumn id="DescriptionColumn" fx:id="columnDescription" prefWidth="332.0" text="Opis" />
+                <TableColumn fx:id="columnStatus" minWidth="0.0" prefWidth="117.0" text="Status" />
+            </columns>
+        </TableView>
+        <TextField fx:id="txtId" layoutX="1078.0" layoutY="85.0" prefHeight="45.0" prefWidth="184.0" promptText="Nr Zadania">
+            <font>
+                <Font size="20.0" />
+            </font></TextField>
+        <Button fx:id="btnDone" layoutX="1078.0" layoutY="291.0" mnemonicParsing="false" onAction="#taskdone" prefHeight="30.0" prefWidth="184.0" text="Wykonane" textFill="#141414">
+            <font>
+                <Font size="20.0" />
+            </font></Button>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+        <Text fill="RED" layoutX="1078.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SERWIS POKOJOWY -ZADANIA-" textAlignment="CENTER" wrappingWidth="198.00000125169754">
+            <font>
+                <Font name="Eras Light ITC" size="36.0" />
+            </font>
+        </Text>
+      <Button fx:id="btnInProgress" layoutX="1078.0" layoutY="229.0" mnemonicParsing="false" onAction="#taskinprogress" prefHeight="30.0" prefWidth="184.0" text="W trakcie" textFill="#141414">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnToDo" layoutX="1078.0" layoutY="169.0" mnemonicParsing="false" onAction="#tasktodo" prefHeight="30.0" prefWidth="184.0" text="Do zrobienia" textFill="#141414">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+    </children>
+
+
+</AnchorPane>
