@@ -1,6 +1,6 @@
 package com.iie.hotelms.controllers;
 
-import com.iie.hotelms.reception.CheckOutTable;
+
 import com.iie.hotelms.services.Client;
 import com.iie.hotelms.services.MassageReservation;
 import javafx.collections.FXCollections;
@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 
 import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 import static com.iie.hotelms.database.DatabaseConnection.getConnection;
+import static com.iie.hotelms.database.dbMassage.massageInsert;
 
 public class ReservationMassageController implements Initializable {
 
@@ -225,6 +227,13 @@ public class ReservationMassageController implements Initializable {
 
 
     public void Add(ActionEvent event) {
+        String date = String.valueOf(txtDate.getValue());
+        String startHour = String.valueOf(txtStartHour.getValue());
+        Integer idGuest = Integer.valueOf(txtClient.getText());
+        String idMassage = String.valueOf(txtType.getValue());
+
+        massageInsert(date,startHour,idGuest, Integer.valueOf(idMassage));
+
     }
 
     public void Search(ActionEvent event) {
@@ -234,5 +243,6 @@ public class ReservationMassageController implements Initializable {
     }
 
     public void Delete(ActionEvent event) {
+
     }
 }
