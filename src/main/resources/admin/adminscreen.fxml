@@ -58,7 +58,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane4" layoutX="511.0" layoutY="401.0" onMouseClicked="#roomchange" onMouseEntered="#pane4_hover" onMouseExited="#pane4_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+      <Pane fx:id="pane4" layoutX="193.0" layoutY="401.0" onMouseClicked="#roomchange" onMouseEntered="#pane4_hover" onMouseExited="#pane4_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="88.0" layoutY="191.0" text="Pokoje">
                <font>
@@ -67,7 +67,35 @@
             </Label>
             <ImageView fitHeight="135.0" fitWidth="128.0" layoutX="58.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icon/document.png" />
+                  <Image url="@../icon/room-key.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane5" layoutX="511.0" layoutY="401.0" onMouseClicked="#roomservicechange" onMouseEntered="#pane5_hover" onMouseExited="#pane5_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="44.0" layoutY="193.0" text="Obsługa pokoi">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="135.0" fitWidth="128.0" layoutX="58.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/room-service.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane6" layoutX="837.0" layoutY="401.0" onMouseClicked="#serviceschange" onMouseEntered="#pane6_hover" onMouseExited="#pane6_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="90.0" layoutY="193.0" text="Usługi">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="135.0" fitWidth="128.0" layoutX="58.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/stationary-bike.png" />
                </image>
             </ImageView>
          </children>
