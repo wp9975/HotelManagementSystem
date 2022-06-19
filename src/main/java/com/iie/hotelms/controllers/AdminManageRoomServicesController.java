@@ -1,8 +1,7 @@
 package com.iie.hotelms.controllers;
 
 import com.iie.hotelms.HotelMS;
-import com.iie.hotelms.admin.Room;
-import com.iie.hotelms.admin.RoomService;
+import com.iie.hotelms.admin.MRoomService;
 import com.iie.hotelms.database.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,20 +26,20 @@ import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 public class AdminManageRoomServicesController implements Initializable {
 
     @FXML
-    private TableColumn<RoomService, Integer> columnId;
+    private TableColumn<MRoomService, Integer> columnId;
 
     @FXML
-    private TableColumn<RoomService, String> columnName;
+    private TableColumn<MRoomService, String> columnName;
 
     @FXML
-    private TableColumn<RoomService, String> columnPrice;
+    private TableColumn<MRoomService, String> columnPrice;
 
 
     @FXML
     private Pane paneb;
 
     @FXML
-    private TableView<RoomService> table;
+    private TableView<MRoomService> table;
 
     @FXML
     private TextField txtId;
@@ -138,7 +137,7 @@ public class AdminManageRoomServicesController implements Initializable {
     {
 
 
-        ObservableList<RoomService> roomservices = FXCollections.observableArrayList();
+        ObservableList<MRoomService> roomservices = FXCollections.observableArrayList();
         try
         {
             pst = dbLink.prepareStatement("select id_room_service_type ,name , price from room_service_types;");
@@ -146,7 +145,7 @@ public class AdminManageRoomServicesController implements Initializable {
             {
                 while (rs.next())
                 {
-                    RoomService st = new RoomService();
+                    MRoomService st = new MRoomService();
                     st.setidRoomService(rs.getInt("id_room_service_type"));
                     st.setName(rs.getString("name"));
                     st.setprice(rs.getFloat("price"));
@@ -165,7 +164,7 @@ public class AdminManageRoomServicesController implements Initializable {
         }
 
         table.setRowFactory( tv -> {
-            TableRow<RoomService> myRow = new TableRow<>();
+            TableRow<MRoomService> myRow = new TableRow<>();
             myRow.setOnMouseClicked (event ->
             {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty()))

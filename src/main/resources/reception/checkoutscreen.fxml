@@ -15,6 +15,11 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.ReceptionCheckOutController">
    <children>
+      <ImageView fitHeight="852.0" fitWidth="1316.0" layoutY="-132.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/receptionleave.jpg" />
+         </image>
+      </ImageView>
       <Text layoutX="450.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wymeldowanie">
          <font>
             <Font size="56.0" />

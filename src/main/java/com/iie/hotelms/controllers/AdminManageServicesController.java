@@ -1,7 +1,6 @@
 package com.iie.hotelms.controllers;
 
 import com.iie.hotelms.HotelMS;
-import com.iie.hotelms.admin.RoomService;
 import com.iie.hotelms.admin.Service;
 import com.iie.hotelms.database.DatabaseConnection;
 import javafx.collections.FXCollections;

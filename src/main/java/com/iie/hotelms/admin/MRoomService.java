@@ -2,13 +2,13 @@ package com.iie.hotelms.admin;
 
 import javafx.beans.property.*;
 
-public class RoomService {
+public class MRoomService {
 
     private final IntegerProperty id_room_service;
     private final StringProperty name;
     private final FloatProperty price;
 
-    public RoomService(){
+    public MRoomService(){
         id_room_service = new SimpleIntegerProperty(this, "id_room_service");
         name = new SimpleStringProperty(this, "name");
         price = new SimpleFloatProperty(this, "price");
