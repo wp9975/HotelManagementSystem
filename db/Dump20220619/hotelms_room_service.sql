@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `room_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `room_service` (
-  `id_room_service` int NOT NULL,
-  `status` tinyint NOT NULL,
+  `id_room_service` int NOT NULL AUTO_INCREMENT,
+  `status` enum('Do Zrobienia','W trakcie','Wykonane') NOT NULL DEFAULT 'Do Zrobienia',
   `name` varchar(45) NOT NULL,
   `description` text,
   `id_department` int NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `room_service` (
   CONSTRAINT `room_service_ibfk_2` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id_worker`),
   CONSTRAINT `room_service_ibfk_3` FOREIGN KEY (`id_room`) REFERENCES `room` (`id_room`),
   CONSTRAINT `room_service_ibfk_4` FOREIGN KEY (`id_room_service_type`) REFERENCES `room_service_types` (`id_room_service_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,6 +49,7 @@ CREATE TABLE `room_service` (
 
 LOCK TABLES `room_service` WRITE;
 /*!40000 ALTER TABLE `room_service` DISABLE KEYS */;
+INSERT INTO `room_service` VALUES (6,'Do Zrobienia','gdgd','dhhddhdhdh',3,NULL,1,3),(7,'Do Zrobienia','dsghhdh','dhdhdhhdhdhdhhd',3,NULL,3,2);
 /*!40000 ALTER TABLE `room_service` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:09
+-- Dump completed on 2022-06-19 21:48:26

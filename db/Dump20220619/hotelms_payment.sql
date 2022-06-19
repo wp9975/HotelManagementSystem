@@ -16,31 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `restaurant_tables`
+-- Table structure for table `payment`
 --
 
-DROP TABLE IF EXISTS `restaurant_tables`;
+DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `restaurant_tables` (
-  `id_table` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `num_of_sits` varchar(45) NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  `price_hourly` varchar(45) DEFAULT NULL,
-  `status` enum('Wolny','Zajęty') NOT NULL DEFAULT 'Wolny',
-  PRIMARY KEY (`id_table`),
-  UNIQUE KEY `id_table_UNIQUE` (`id_table`)
+CREATE TABLE `payment` (
+  `id_payment` int NOT NULL AUTO_INCREMENT,
+  `id_guest` int NOT NULL,
+  `id_reservation` int NOT NULL,
+  `type` enum('Karta płatnicza','Gotówka','BLIK') NOT NULL,
+  `date` date NOT NULL,
+  `invoice` blob,
+  PRIMARY KEY (`id_payment`),
+  KEY `id_reservation` (`id_reservation`),
+  KEY `payment_ibfk_1_idx` (`id_guest`),
+  CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`),
+  CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`id_reservation`) REFERENCES `reservation` (`id_reservation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `restaurant_tables`
+-- Dumping data for table `payment`
 --
 
-LOCK TABLES `restaurant_tables` WRITE;
-/*!40000 ALTER TABLE `restaurant_tables` DISABLE KEYS */;
-/*!40000 ALTER TABLE `restaurant_tables` ENABLE KEYS */;
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:07
+-- Dump completed on 2022-06-19 21:48:27

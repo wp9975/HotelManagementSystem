@@ -23,13 +23,11 @@ DROP TABLE IF EXISTS `room_service_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `room_service_types` (
-  `id_room_service_type` int NOT NULL,
+  `id_room_service_type` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `id_tasks` int NOT NULL,
-  PRIMARY KEY (`id_room_service_type`),
-  KEY `id_tasks` (`id_tasks`),
-  CONSTRAINT `room_service_types_ibfk_1` FOREIGN KEY (`id_tasks`) REFERENCES `room_service_tasks` (`id_room_service_tasks`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `price` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_room_service_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +36,7 @@ CREATE TABLE `room_service_types` (
 
 LOCK TABLES `room_service_types` WRITE;
 /*!40000 ALTER TABLE `room_service_types` DISABLE KEYS */;
+INSERT INTO `room_service_types` VALUES (1,'Sprzątanie','12.0'),(2,'Pranie','5.0'),(3,'Prasowanie','2.5');
 /*!40000 ALTER TABLE `room_service_types` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:07
+-- Dump completed on 2022-06-19 21:48:27

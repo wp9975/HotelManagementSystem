@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `booking_services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking_services` (
-  `id_booking_services` int NOT NULL,
+  `id_booking_services` int NOT NULL AUTO_INCREMENT,
   `status` tinyint NOT NULL,
   `date` date NOT NULL,
   `start_time` time NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `booking_services` (
   KEY `id_worker_idx` (`id_worker`),
   CONSTRAINT `id_service` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`),
   CONSTRAINT `id_worker` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id_worker`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:08
+-- Dump completed on 2022-06-19 21:48:27

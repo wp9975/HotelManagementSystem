@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `roomtype`
+-- Table structure for table `services_guests`
 --
 
-DROP TABLE IF EXISTS `roomtype`;
+DROP TABLE IF EXISTS `services_guests`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `roomtype` (
-  `id_room_type` int NOT NULL,
-  `type` varchar(45) NOT NULL,
-  PRIMARY KEY (`id_room_type`)
+CREATE TABLE `services_guests` (
+  `id_guest` int NOT NULL,
+  `id_booking_services` int NOT NULL,
+  PRIMARY KEY (`id_guest`,`id_booking_services`),
+  KEY `id_booking_services` (`id_booking_services`),
+  CONSTRAINT `services_guests_ibfk_1` FOREIGN KEY (`id_booking_services`) REFERENCES `booking_services` (`id_booking_services`),
+  CONSTRAINT `services_guests_ibfk_2` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `roomtype`
+-- Dumping data for table `services_guests`
 --
 
-LOCK TABLES `roomtype` WRITE;
-/*!40000 ALTER TABLE `roomtype` DISABLE KEYS */;
-INSERT INTO `roomtype` VALUES (1,'Jednoosobowy'),(2,'Dwuosobowy (2 łóżka)'),(3,'Dwuosobowy'),(4,'Trzyosobowy'),(5,'Czteroosobowy'),(6,'Apartament');
-/*!40000 ALTER TABLE `roomtype` ENABLE KEYS */;
+LOCK TABLES `services_guests` WRITE;
+/*!40000 ALTER TABLE `services_guests` DISABLE KEYS */;
+INSERT INTO `services_guests` VALUES (1,1),(2,1);
+/*!40000 ALTER TABLE `services_guests` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:09
+-- Dump completed on 2022-06-19 21:48:28
