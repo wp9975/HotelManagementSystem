@@ -328,16 +328,20 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
 
-    public void Connect()
+    public Connection Connect()
     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/hotelms","root","root");
+
+            con=DriverManager.getConnection("jdbc:mysql://hotel.mysql.database.azure.com:3306/hotelms", "root1", "ZAQ!2wsx");
+
+
         } catch (ClassNotFoundException ex) {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return null;
     }
 
 
