@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+
+import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.io.IOException;
 import java.net.URL;
@@ -20,9 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminWorkerslistScreen implements Initializable {
-
-    DatabaseConnection connectNow = new DatabaseConnection();
-    Connection connectDB = connectNow.getConnection();
 
 
     @FXML
@@ -90,7 +89,7 @@ public class AdminWorkerslistScreen implements Initializable {
 
         try {
 
-            pst = con.prepareStatement("select id_department from departments where dept_name= ?;");
+            pst = dbLink.prepareStatement("select id_department from departments where dept_name= ?;");
             pst.setString(1, department);
             ResultSet rs = pst.executeQuery();
             {
@@ -124,7 +123,7 @@ public class AdminWorkerslistScreen implements Initializable {
         }else
         {
             try {
-                pst = con.prepareStatement("insert into workers(email,password,first_name,last_name,phone,id_department) values(?,?,?,?,?,?)");
+                pst = dbLink.prepareStatement("insert into workers(email,password,first_name,last_name,phone,id_department) values(?,?,?,?,?,?)");
                 pst.setString(1, email);
                 pst.setString(2, haslo);
                 pst.setString(3, imie);
@@ -164,7 +163,7 @@ public class AdminWorkerslistScreen implements Initializable {
 
         try
         {
-            pst = con.prepareStatement("delete from workers where id_worker = ? ");
+            pst = dbLink.prepareStatement("delete from workers where id_worker = ? ");
             pst.setInt(1, id);
             pst.executeUpdate();
 
@@ -195,7 +194,7 @@ public class AdminWorkerslistScreen implements Initializable {
         int idDept = 1;
 
         try {
-            pst = con.prepareStatement("select id_department from departments where dept_name= ?;");
+            pst = dbLink.prepareStatement("select id_department from departments where dept_name= ?;");
             pst.setString(1, department);
             ResultSet rs = pst.executeQuery();
             {
@@ -212,7 +211,7 @@ public class AdminWorkerslistScreen implements Initializable {
 
         try
         {
-            pst = con.prepareStatement("update workers set email = ?,password = ? ,first_name = ?, last_name = ?, phone = ?, id_department = ? where id_worker = ? ");
+            pst = dbLink.prepareStatement("update workers set email = ?,password = ? ,first_name = ?, last_name = ?, phone = ?, id_department = ? where id_worker = ? ");
             pst.setString(1, email);
             pst.setString(2, haslo);
             pst.setString(3, imie);
@@ -238,7 +237,7 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
 
-    Connection con;
+
     PreparedStatement pst;
     int myIndex;
     int id;
@@ -246,11 +245,11 @@ public class AdminWorkerslistScreen implements Initializable {
 
     public void table()
     {
-        Connect();
+
         ObservableList<Worker> pracownicy = FXCollections.observableArrayList();
         try
         {
-            pst = con.prepareStatement("select id_worker, email, password, first_name, last_name, phone, workers.id_department , departments.dept_name from workers join departments on workers.id_department=departments.id_department");
+            pst = dbLink.prepareStatement("select id_worker, email, password, first_name, last_name, phone, workers.id_department , departments.dept_name from workers join departments on workers.id_department=departments.id_department");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next())
@@ -308,10 +307,10 @@ public class AdminWorkerslistScreen implements Initializable {
 
     public void setChoiceBox(){
 
-        Connect();
+
 
         try {
-            pst = con.prepareStatement("select id_department, dept_name from departments;");
+            pst = dbLink.prepareStatement("select id_department, dept_name from departments;");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next()) {
@@ -328,21 +327,7 @@ public class AdminWorkerslistScreen implements Initializable {
 
 
 
-    public Connection Connect()
-    {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            con=DriverManager.getConnection("jdbc:mysql://hotel.mysql.database.azure.com:3306/hotelms", "root1", "ZAQ!2wsx");
-
-
-        } catch (ClassNotFoundException ex) {
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
 
 
 
@@ -374,7 +359,7 @@ public class AdminWorkerslistScreen implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        Connect();
+        DatabaseConnection.getConnection();
         table();
         setChoiceBox();
     }

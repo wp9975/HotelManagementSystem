@@ -9,9 +9,9 @@ public class DatabaseConnection {
 
     public static Connection getConnection(){
         String dbName = "hotelms";
-        String dbUser = "root";
-        String dbPassword = "root";
-        String url = "jdbc:mysql://localhost/"+ dbName;
+        String dbUser = "root1";
+        String dbPassword = "ZAQ!2wsx";
+        String url = "jdbc:mysql://hotel.mysql.database.azure.com:3306/hotelms";
 //ready
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

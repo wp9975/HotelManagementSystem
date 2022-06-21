@@ -70,7 +70,10 @@ public class LoginController implements Initializable {
                             else if(id_department == 2){
                                 log.changeScene("/reception/receptionscreen.fxml");
                             }
-                            else{
+                            else if (id_department == 3){
+                                log.changeScene("/workers/tasklistscreen.fxml");
+                            }
+                            else {
                                 log.changeScene("/workers/workersscreen.fxml");
                             }
                         }
