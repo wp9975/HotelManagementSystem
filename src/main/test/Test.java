@@ -16,7 +16,6 @@ public class Test {
         System.out.println("Connection");
         Connection result = DatabaseConnection.getConnection();
         assertEquals(result == null,true);
-
     }
 
 }
