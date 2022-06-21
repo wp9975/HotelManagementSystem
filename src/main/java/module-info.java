@@ -3,6 +3,7 @@ module com.iie.hotelms {
     requires javafx.fxml;
     requires java.sql;
     requires PDFGenerate;
+    requires java.desktop;
 
 
     opens com.iie.hotelms to javafx.fxml;

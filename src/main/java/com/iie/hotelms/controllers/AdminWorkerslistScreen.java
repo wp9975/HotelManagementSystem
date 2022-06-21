@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
+import static javax.swing.JOptionPane.showMessageDialog;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -89,6 +89,7 @@ public class AdminWorkerslistScreen implements Initializable {
         int idDept = 1;
 
         try {
+
             pst = con.prepareStatement("select id_department from departments where dept_name= ?;");
             pst.setString(1, department);
             ResultSet rs = pst.executeQuery();
@@ -104,33 +105,55 @@ public class AdminWorkerslistScreen implements Initializable {
             Logger.getLogger(AdminWorkerslistScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        if(email.isEmpty() || haslo.isEmpty() || imie.isEmpty() || nazwisko.isEmpty() || telefon.isEmpty())
+        {
+            if(email.isEmpty()){ txtEmail.setStyle("-fx-border-color: red;"); }
+            if(haslo.isEmpty()){ txtPassword.setStyle("-fx-border-color: red;"); }
+            if(imie.isEmpty()){ txtName.setStyle("-fx-border-color: red;"); }
+            if(nazwisko.isEmpty()){ txtLastName.setStyle("-fx-border-color: red;"); }
+            if(telefon.isEmpty()){ txtPhone.setStyle("-fx-border-color: red;"); }
 
-        try{
-            pst = con.prepareStatement("insert into workers(email,password,first_name,last_name,phone,id_department) values(?,?,?,?,?,?)");
-            pst.setString(1, email);
-            pst.setString(2, haslo);
-            pst.setString(3, imie);
-            pst.setString(4, nazwisko);
-            pst.setString(5, telefon);
-            pst.setInt(6, idDept);
+        }else if(telefon.length() !=9)
+        {
+            txtPhone.setStyle("-fx-border-color: red;");
+            showMessageDialog(null, "Niepoprawny numer telefonu");
+        }else if(email.matches("^(.+)@(.+)$") == false)
+        {
+            txtPhone.setStyle("-fx-border-color: red;");
+            showMessageDialog(null, "Niepoprawny adres email @");
+        }else
+        {
+            try {
+                pst = con.prepareStatement("insert into workers(email,password,first_name,last_name,phone,id_department) values(?,?,?,?,?,?)");
+                pst.setString(1, email);
+                pst.setString(2, haslo);
+                pst.setString(3, imie);
+                pst.setString(4, nazwisko);
+                pst.setString(5, telefon);
+                pst.setInt(6, idDept);
 
-            pst.executeUpdate();
+                pst.executeUpdate();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-            alert.setHeaderText("Dodano nowego pracownika");
+                alert.setHeaderText("Dodano nowego pracownika");
+                txtEmail.setStyle("-fx-border-color: green;");
+                txtPassword.setStyle("-fx-border-color: green;");
+                txtName.setStyle("-fx-border-color: green;");
+                txtLastName.setStyle("-fx-border-color: green;");
+                txtPhone.setStyle("-fx-border-color: green;");
+                alert.showAndWait();
 
-            alert.showAndWait();
+                table();
 
-            table();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
 
+        }
 
-    }
 
     @FXML
     void Delete(ActionEvent event) {
