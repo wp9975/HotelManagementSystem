@@ -47,11 +47,9 @@ public class Massage {
     public String getDescription() {
         return description.get();
     }
-
     public StringProperty descriptionProperty() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description.set(description);
     }

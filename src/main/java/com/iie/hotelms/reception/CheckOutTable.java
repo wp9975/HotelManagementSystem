@@ -13,6 +13,7 @@ public class CheckOutTable {
     private final IntegerProperty id_guest;
     private final IntegerProperty id_reservation;
     private final FloatProperty bill;
+    private final StringProperty phone;
 
 
 // tab
@@ -26,6 +27,7 @@ public class CheckOutTable {
         this.bill = new SimpleFloatProperty(this, "bill");
         this.roomPrice = new SimpleFloatProperty(this, "roomPrice");
         this.address = new SimpleStringProperty(this, "address");
+        this.phone = new SimpleStringProperty(this, "phone");
     }
 
 
@@ -68,6 +70,11 @@ public class CheckOutTable {
     public FloatProperty billProperty() {return bill;}
     public Float getBill() {return bill.get();}
     public void setBill(Float newBill) {bill.set(newBill);}
+
+    public StringProperty phoneProperty() {return phone;}
+    public String getPhone() {return phone.get();}
+    public void setPhone(String newTelefon) {
+        phone.set(newTelefon);}
 
 
 

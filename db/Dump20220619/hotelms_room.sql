@@ -16,39 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `r_massages_reservation`
+-- Table structure for table `room`
 --
 
-DROP TABLE IF EXISTS `r_massages_reservation`;
+DROP TABLE IF EXISTS `room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `r_massages_reservation` (
-  `id_massages_reservation` int NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `start_hour` time NOT NULL,
-  `end_hour` time DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  `id_worker` int DEFAULT NULL,
-  `id_massage` int NOT NULL,
-  `id_guest` int NOT NULL,
-  PRIMARY KEY (`id_massages_reservation`),
-  KEY `id_worker` (`id_worker`),
-  KEY `id_massage` (`id_massage`),
-  KEY `id_guest` (`id_guest`),
-  CONSTRAINT `r_massages_reservation_ibfk_1` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id_worker`),
-  CONSTRAINT `r_massages_reservation_ibfk_2` FOREIGN KEY (`id_massage`) REFERENCES `r_massages` (`id_masage`),
-  CONSTRAINT `r_massages_reservation_ibfk_3` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `room` (
+  `id_room` int NOT NULL AUTO_INCREMENT,
+  `status` enum('Wolny','Zajęty') NOT NULL,
+  `room_number` varchar(6) NOT NULL,
+  `price` float NOT NULL,
+  `id_room_type` int NOT NULL,
+  `capacity` int NOT NULL,
+  PRIMARY KEY (`id_room`),
+  KEY `id_room_type` (`id_room_type`),
+  CONSTRAINT `room_ibfk_1` FOREIGN KEY (`id_room_type`) REFERENCES `roomtype` (`id_room_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `r_massages_reservation`
+-- Dumping data for table `room`
 --
 
-LOCK TABLES `r_massages_reservation` WRITE;
-/*!40000 ALTER TABLE `r_massages_reservation` DISABLE KEYS */;
-INSERT INTO `r_massages_reservation` VALUES (1,'2013-06-20','12:00:00','13:00:00',NULL,NULL,11,1),(2,'2022-06-13','12:00:00','13:00:00',NULL,NULL,11,1);
-/*!40000 ALTER TABLE `r_massages_reservation` ENABLE KEYS */;
+LOCK TABLES `room` WRITE;
+/*!40000 ALTER TABLE `room` DISABLE KEYS */;
+INSERT INTO `room` VALUES (1,'Zajęty','3',120,2,2),(2,'Wolny','23',150,3,2),(3,'Zajęty','24',200,4,3);
+/*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:08
+-- Dump completed on 2022-06-19 21:48:28

@@ -16,33 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `room`
+-- Table structure for table `restaurant_tables`
 --
 
-DROP TABLE IF EXISTS `room`;
+DROP TABLE IF EXISTS `restaurant_tables`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `room` (
-  `id_room` int NOT NULL AUTO_INCREMENT,
-  `status` enum('Wolny','Zajęty') NOT NULL,
-  `room_number` varchar(6) NOT NULL,
-  `price` float NOT NULL,
-  `id_room_type` int NOT NULL,
-  `capacity` int NOT NULL,
-  PRIMARY KEY (`id_room`),
-  KEY `id_room_type` (`id_room_type`),
-  CONSTRAINT `room_ibfk_1` FOREIGN KEY (`id_room_type`) REFERENCES `roomtype` (`id_room_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `restaurant_tables` (
+  `id_table` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `num_of_sits` varchar(45) NOT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `price_hourly` varchar(45) DEFAULT NULL,
+  `status` enum('Wolny','Zajęty') NOT NULL DEFAULT 'Wolny',
+  PRIMARY KEY (`id_table`),
+  UNIQUE KEY `id_table_UNIQUE` (`id_table`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `room`
+-- Dumping data for table `restaurant_tables`
 --
 
-LOCK TABLES `room` WRITE;
-/*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'Zajęty','14',120,2,2),(2,'Wolny','23',150,3,2),(3,'Zajęty','24',200,4,3);
-/*!40000 ALTER TABLE `room` ENABLE KEYS */;
+LOCK TABLES `restaurant_tables` WRITE;
+/*!40000 ALTER TABLE `restaurant_tables` DISABLE KEYS */;
+/*!40000 ALTER TABLE `restaurant_tables` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:09
+-- Dump completed on 2022-06-19 21:48:26

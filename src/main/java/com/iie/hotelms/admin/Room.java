@@ -13,13 +13,13 @@ public class Room {
     private final IntegerProperty capacity;
 
     public Room(){
-        idRoom = new SimpleIntegerProperty(this, "id_room");;
-        roomNumber = new SimpleStringProperty(this, "room_number");;
-        idType = new SimpleIntegerProperty(this, "id_room_type");;
-        type = new SimpleStringProperty(this, "type");;
-        status = new SimpleStringProperty(this, "status");;
-        price = new SimpleFloatProperty(this, "price");;
-        capacity = new SimpleIntegerProperty(this, "capacity");;
+        idRoom = new SimpleIntegerProperty(this, "id_room");
+        roomNumber = new SimpleStringProperty(this, "room_number");
+        idType = new SimpleIntegerProperty(this, "id_room_type");
+        type = new SimpleStringProperty(this, "type");
+        status = new SimpleStringProperty(this, "status");
+        price = new SimpleFloatProperty(this, "price");
+        capacity = new SimpleIntegerProperty(this, "capacity");
     }
 
     public IntegerProperty idRoomProperty() {return idRoom;}

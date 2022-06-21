@@ -16,37 +16,39 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `reservation`
+-- Table structure for table `r_massages_reservation`
 --
 
-DROP TABLE IF EXISTS `reservation`;
+DROP TABLE IF EXISTS `r_massages_reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `reservation` (
-  `id_reservation` int NOT NULL AUTO_INCREMENT,
-  `check_in` datetime NOT NULL,
-  `check_out` datetime DEFAULT NULL,
-  `adults` int DEFAULT NULL,
-  `children` int DEFAULT NULL,
-  `bill` float DEFAULT NULL,
+CREATE TABLE `r_massages_reservation` (
+  `id_massages_reservation` int NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `start_hour` time NOT NULL,
+  `end_hour` time DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `id_worker` int DEFAULT NULL,
+  `id_massage` int NOT NULL,
   `id_guest` int NOT NULL,
-  `id_room` int NOT NULL,
-  PRIMARY KEY (`id_reservation`),
-  KEY `id_room` (`id_room`),
-  KEY `reservation_ibfk_1_idx` (`id_guest`),
-  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`),
-  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`id_room`) REFERENCES `room` (`id_room`)
+  PRIMARY KEY (`id_massages_reservation`),
+  KEY `id_worker` (`id_worker`),
+  KEY `id_massage` (`id_massage`),
+  KEY `id_guest` (`id_guest`),
+  CONSTRAINT `r_massages_reservation_ibfk_1` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id_worker`),
+  CONSTRAINT `r_massages_reservation_ibfk_2` FOREIGN KEY (`id_massage`) REFERENCES `r_massages` (`id_masage`),
+  CONSTRAINT `r_massages_reservation_ibfk_3` FOREIGN KEY (`id_guest`) REFERENCES `guest` (`id_guest`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `reservation`
+-- Dumping data for table `r_massages_reservation`
 --
 
-LOCK TABLES `reservation` WRITE;
-/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
-INSERT INTO `reservation` VALUES (1,'2022-05-08 18:40:02',NULL,2,1,100,1,3),(2,'2022-05-08 18:54:44',NULL,2,1,200,2,1);
-/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
+LOCK TABLES `r_massages_reservation` WRITE;
+/*!40000 ALTER TABLE `r_massages_reservation` DISABLE KEYS */;
+INSERT INTO `r_massages_reservation` VALUES (1,'2013-06-20','12:00:00','13:00:00',NULL,NULL,11,1),(2,'2022-06-13','12:00:00','13:00:00',NULL,NULL,11,1);
+/*!40000 ALTER TABLE `r_massages_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-12 20:22:07
+-- Dump completed on 2022-06-19 21:48:28
