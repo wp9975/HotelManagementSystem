@@ -296,14 +296,14 @@ public class ReservationRoomServicesController implements Initializable {
             pst.setString(2, description);
             pst.setFloat(3, id_room);
             pst.setInt(4, id_type);
-            pst.setInt(4, id_task);
+            pst.setInt(5, id_task);
 
 
             pst.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-            alert.setHeaderText("Pomyślnie dodano!");
+            alert.setHeaderText("Pomyślnie edytowano!");
 
             alert.showAndWait();
 
