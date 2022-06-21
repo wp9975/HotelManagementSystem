@@ -1,6 +1,7 @@
 package com.iie.hotelms.controllers;
 
 
+import com.iie.hotelms.HotelMS;
 import com.iie.hotelms.reception.RoomGuest;
 import com.iie.hotelms.services.TaskList;
 import javafx.collections.FXCollections;
@@ -9,7 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +26,9 @@ import static com.iie.hotelms.database.DatabaseConnection.dbLink;
 import static com.iie.hotelms.database.DatabaseConnection.getConnection;
 
 public class WorkersTasklistController implements Initializable {
+
+    @FXML
+    private Pane pane6;
 
     @FXML
     private Button btnDone;
@@ -258,6 +265,30 @@ public class WorkersTasklistController implements Initializable {
             return myRow;
         });
     }
+
+
+    @FXML
+    private void pane6_mexit(MouseEvent event) {
+        pane6.setStyle("-fx-background-color: white; -fx-background-radius: 6px;");
+    }
+
+    @FXML
+    private void pane6_hover(MouseEvent event) {
+        pane6.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
+    }
+
+    @FXML
+    private void exit(MouseEvent event) {
+
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/loginscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

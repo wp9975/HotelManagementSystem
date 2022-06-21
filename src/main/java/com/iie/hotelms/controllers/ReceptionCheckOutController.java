@@ -140,7 +140,66 @@ public class ReceptionCheckOutController implements Initializable {
 
 
     @FXML
-    void checkout(ActionEvent event) {
+    void checkout(ActionEvent event) throws SQLException {
+        Integer id_reservation = Integer.valueOf(txtreservationid.getText());
+        Integer id_guest = 1;
+        Integer id_room = 1;
+
+        try {
+            pst = dbLink.prepareStatement("select id_guest, id_room from reservation where id_reservation= ?;");
+            pst.setInt(1, id_reservation);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next()) {
+                    id_guest = rs.getInt("id_guest");
+                    id_room = rs.getInt("id_room");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try{
+            pst = dbLink.prepareStatement("delete from guest where id_guest=?;");
+            pst.setInt(1, id_guest);
+            pst.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try{
+            pst = dbLink.prepareStatement("delete from reservation where id_reservation=?;");
+            pst.setInt(1, id_reservation);
+            pst.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try{
+            pst = dbLink.prepareStatement("update room set status = 1 where id_room = ? ;");
+            pst.setInt(1, id_room);
+            pst.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setHeaderText("Poprawnie wymeldowano klienta!");
+
+            alert.showAndWait();
+
+            table();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
 
     }
 

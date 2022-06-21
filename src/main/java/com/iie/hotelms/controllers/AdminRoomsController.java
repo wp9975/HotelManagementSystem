@@ -2,6 +2,7 @@ package com.iie.hotelms.controllers;
 
 import com.iie.hotelms.HotelMS;
 import com.iie.hotelms.admin.Room;
+import com.iie.hotelms.database.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,7 +68,7 @@ public class AdminRoomsController implements Initializable {
     @FXML
     private TableView<Room> table;
 
-    Connection con;
+
     PreparedStatement pst;
     int myIndex;
     int id;
@@ -98,7 +99,7 @@ public class AdminRoomsController implements Initializable {
         }
 
         try{
-            pst = con.prepareStatement("insert into room(status,room_number,price,id_room_type,capacity) values(?,?,?,?,?)");
+            pst = dbLink.prepareStatement("insert into room(status,room_number,price,id_room_type,capacity) values(?,?,?,?,?)");
             pst.setInt(1, status);
             pst.setString(2, roomNumber);
             pst.setFloat(3, price);
@@ -132,7 +133,7 @@ public class AdminRoomsController implements Initializable {
 
         try
         {
-            pst = con.prepareStatement("delete from room where id_room = ? ");
+            pst = dbLink.prepareStatement("delete from room where id_room = ? ");
             pst.setInt(1, id);
             pst.executeUpdate();
 
@@ -180,7 +181,7 @@ public class AdminRoomsController implements Initializable {
         }
 
         try{
-            pst = con.prepareStatement("update room set room_number = ?, price = ?, id_room_type = ?, capacity = ? where id_room = ?");
+            pst = dbLink.prepareStatement("update room set room_number = ?, price = ?, id_room_type = ?, capacity = ? where id_room = ?");
             pst.setString(1, roomNumber);
             pst.setFloat(2, price);
             pst.setInt(3, id_room_type);
@@ -205,10 +206,10 @@ public class AdminRoomsController implements Initializable {
     }
 
     public void setChoiceBox(){
-        Connect();
+
 
         try {
-            pst = con.prepareStatement("select id_room_type, type from roomtype;");
+            pst = dbLink.prepareStatement("select id_room_type, type from roomtype;");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next()) {
@@ -225,12 +226,12 @@ public class AdminRoomsController implements Initializable {
 
     public void table()
     {
-        Connect();
+
 
         ObservableList<Room> pokoje = FXCollections.observableArrayList();
         try
         {
-            pst = con.prepareStatement("select room.id_room, room.room_number, room.id_room_type, roomtype.type, room.status, room.price, room.capacity from room join roomtype on room.id_room_type=roomtype.id_room_type;");
+            pst = dbLink.prepareStatement("select room.id_room, room.room_number, room.id_room_type, roomtype.type, room.status, room.price, room.capacity from room join roomtype on room.id_room_type=roomtype.id_room_type;");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next())
@@ -281,17 +282,7 @@ public class AdminRoomsController implements Initializable {
 
     }
 
-    public void Connect()
-    {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/hotelms","root","root");
-        } catch (ClassNotFoundException ex) {
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
 
     @FXML
     private void paneb_mexit(MouseEvent event) {
@@ -321,7 +312,7 @@ public class AdminRoomsController implements Initializable {
 
         setChoiceBox();
         table();
-        Connect();
+       DatabaseConnection.getConnection();
 
     }
 
