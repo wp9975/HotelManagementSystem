@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.AdminStatsController">
+   <children>
+      <ImageView fitHeight="854.0" fitWidth="1280.0" layoutY="-134.0" opacity="0.35" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/stats.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="534.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statystyki">
+         <font>
+            <Font size="57.0" />
+         </font>
+      </Text>
+      <Pane fx:id="paneb" onMouseClicked="#back" onMouseEntered="#paneb_hover" onMouseExited="#paneb_mexit" prefHeight="90.0" prefWidth="122.0" style="-fx-background-color: bisque;">
+         <children>
+            <ImageView fitHeight="76.0" fitWidth="103.0" layoutX="23.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="145.0" layoutY="130.0" prefHeight="66.0" prefWidth="990.0" style="-fx-background-color: lightgrey;">
+         <children>
+            <Text layoutX="20.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualna liczba gości w hotelu:">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <TextField fx:id="printGuestNumber" alignment="CENTER" editable="false" layoutX="632.0" layoutY="7.0" prefHeight="53.0" prefWidth="197.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <Pane layoutX="145.0" layoutY="220.0" prefHeight="66.0" prefWidth="990.0" style="-fx-background-color: lightgrey;">
+         <children>
+            <Text layoutX="20.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba gości (ost. 30 dni):">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <TextField fx:id="printGuestLastDays" alignment="CENTER" editable="false" layoutX="636.0" layoutY="7.0" prefHeight="53.0" prefWidth="197.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <Pane layoutX="145.0" layoutY="306.0" prefHeight="66.0" prefWidth="990.0" style="-fx-background-color: lightgrey;">
+         <children>
+            <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba pokoi (wolne/zajęte):">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <TextField fx:id="printFreeRooms" alignment="CENTER" editable="false" layoutX="570.0" layoutY="7.0" prefHeight="53.0" prefWidth="142.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="printOccupiedRoom" alignment="CENTER" editable="false" layoutX="722.0" layoutY="7.0" prefHeight="53.0" prefWidth="142.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <Pane layoutX="145.0" layoutY="472.0" prefHeight="66.0" prefWidth="990.0" style="-fx-background-color: lightgrey;">
+         <children>
+            <Text layoutX="20.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przychód w ubiegłym miesiącu:">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <TextField fx:id="printLastMonthIncome" alignment="CENTER" editable="false" layoutX="641.0" layoutY="7.0" prefHeight="53.0" prefWidth="197.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <Pane layoutX="145.0" layoutY="392.0" prefHeight="66.0" prefWidth="990.0" style="-fx-background-color: lightgrey;">
+         <children>
+            <Text layoutX="20.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba pracowników:">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <TextField fx:id="printNumberOfWorkers" alignment="CENTER" editable="false" layoutX="638.0" layoutY="6.0" prefHeight="53.0" prefWidth="197.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

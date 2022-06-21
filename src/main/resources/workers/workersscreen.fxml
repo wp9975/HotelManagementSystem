@@ -5,12 +5,44 @@
 <?import javafx.scene.text.Text?>
 
 
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.WorkersController">
    <children>
-      <Text layoutX="343.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Panel pracownika">
-         <font>
-            <Font size="77.0" />
-         </font>
-      </Text>
+      <ImageView fitHeight="865.0" fitWidth="1280.0" layoutY="-104.0" opacity="0.62" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/hotel-room.jpg" />
+         </image>
+      </ImageView>
+      <Pane fx:id="pane5" layoutX="379.0" layoutY="250.0" onMouseClicked="#TaskList" onMouseEntered="#pane5_hover" onMouseExited="#pane5_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="64.0" layoutY="188.0" text="Lista Zadań">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="138.0" fitWidth="137.0" layoutX="57.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/tools.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane6" layoutX="654.0" layoutY="250.0" onMouseClicked="#exit" onMouseEntered="#pane6_hover" onMouseExited="#pane6_mexit" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="61.0" layoutY="186.0" text="Wyloguj się">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="135.0" fitWidth="128.0" layoutX="61.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/logout.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

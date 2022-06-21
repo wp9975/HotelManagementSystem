@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,6 +13,122 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.reception.CheckinController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.ReceptionCheckInController">
+   <children>
+      <ImageView fitHeight="855.0" fitWidth="1311.0" layoutY="-135.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/receptionss.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="245.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formularz zakwaterowania w hotelu">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Text>
+      <Pane layoutX="46.0" layoutY="117.0" prefHeight="565.0" prefWidth="457.0" style="-fx-background-color: lightgrey;">
+         <children>
+             <TextField fx:id="txtnumberofadults" layoutX="165.0" layoutY="27.0" prefHeight="40.0" prefWidth="250.0" promptText="Liczba dorosłych" />
+             <Label layoutX="48.0" layoutY="37.0" text="Liczba Dorosłych: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+             <TextField fx:id="txtnumberofchildren" layoutX="165.0" layoutY="74.0" prefHeight="40.0" prefWidth="250.0" promptText="Liczba dzieci" />
+             <Label layoutX="73.0" layoutY="85.0" text="Liczba dzieci:">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+            <ChoiceBox fx:id="txtroomtype" layoutX="165.0" layoutY="167.0" onAction="#table" prefHeight="40.0" prefWidth="250.0" />
+            <Label layoutX="59.0" layoutY="178.0" text="Rodzaj pokoju">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TableView fx:id="table" layoutX="55.0" layoutY="227.0" prefHeight="313.0" prefWidth="347.0">
+              <columns>
+                <TableColumn fx:id="colroomnumber" prefWidth="120.0" text="Numer pokoju" />
+                <TableColumn fx:id="colcapacity" prefWidth="115.0" text="Liczba miejsc" />
+                  <TableColumn fx:id="colprice" prefWidth="111.0" text="Cena" />
+              </columns>
+            </TableView>
+            <TextField fx:id="txtroomnumber" layoutX="165.0" layoutY="121.0" prefHeight="40.0" prefWidth="250.0" promptText="Numer pokoju" />
+            <Label layoutX="57.0" layoutY="131.0" text="Numer pokoju:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
 
+
+         </children>
+      </Pane>
+      <Pane layoutX="520.0" layoutY="117.0" prefHeight="565.0" prefWidth="457.0" style="-fx-background-color: lightgrey;">
+         <children>
+
+             <TextField fx:id="txtname" layoutX="141.0" layoutY="57.0" prefHeight="40.0" prefWidth="250.0" promptText="Imie" />
+             <Label layoutX="99.0" layoutY="68.0" text="Imię: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+
+             <TextField fx:id="txtlastname" layoutX="141.0" layoutY="109.0" prefHeight="40.0" prefWidth="250.0" promptText="Nazwisko" />
+             <Label layoutX="71.0" layoutY="120.0" text="Nazwisko: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+
+             <TextField fx:id="txtadress" layoutX="141.0" layoutY="162.0" prefHeight="40.0" prefWidth="250.0" promptText="Adres" />
+             <Label layoutX="91.0" layoutY="173.0" text="Adres: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+
+             <TextField fx:id="txtcity" layoutX="141.0" layoutY="218.0" prefHeight="40.0" prefWidth="250.0" promptText="Miasto" />
+             <Label layoutX="88.0" layoutY="229.0" text="Miasto: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+
+             <TextField fx:id="txtcountry" layoutX="141.0" layoutY="268.0" prefHeight="40.0" prefWidth="250.0" promptText="Kraj" />
+             <Label layoutX="100.0" layoutY="279.0" text="Kraj: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+
+             <TextField fx:id="txtemail" layoutX="141.0" layoutY="320.0" prefHeight="40.0" prefWidth="250.0" promptText="Email" />
+             <Label layoutX="89.0" layoutY="331.0" text="E-Mail: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+
+             <TextField fx:id="txtphone" layoutX="141.0" layoutY="372.0" prefHeight="40.0" prefWidth="250.0" promptText="Numer Telefonu" />
+             <Label layoutX="28.0" layoutY="383.0" text="Numer telefonu: ">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+
+
+
+
+         </children>
+      </Pane>
+      <Pane onMouseClicked="#back" prefHeight="87.0" prefWidth="110.0" style="-fx-background-color: bisque;">
+         <children>
+            <ImageView fitHeight="77.0" fitWidth="94.0" layoutX="17.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button fx:id="submit" layoutX="1069.0" layoutY="455.0" mnemonicParsing="false" onAction="#add" prefHeight="67.0" prefWidth="118.0" text="Check In" />
+      <Button fx:id="clear" layoutX="1069.0" layoutY="538.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="118.0" text="Reset" />
+   </children>
 </AnchorPane>

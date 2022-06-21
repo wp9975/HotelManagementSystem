@@ -25,6 +25,8 @@ public class ReceptionController implements Initializable {
     private Pane pane5;
     @FXML
     private Pane pane6;
+    @FXML
+    private Pane pane7;
 
 
     @Override
@@ -93,6 +95,16 @@ public class ReceptionController implements Initializable {
     private void pane6_hover(MouseEvent event) {
         pane6.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
     }
+
+    @FXML
+    private void pane7_mexit(MouseEvent event) {
+        pane7.setStyle("-fx-background-color: white; -fx-background-radius: 6px;");
+    }
+
+    @FXML
+    private void pane7_hover(MouseEvent event) {
+        pane7.setStyle("-fx-background-color: #377ce8; -fx-background-radius: 6px;");
+    }
 // ____________________________________________________________________________________________
 
 // Screen change ____________________________________________________________________________________
@@ -108,6 +120,65 @@ public class ReceptionController implements Initializable {
 
         }
 
+    @FXML
+    private void checkinchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/checkinscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void checkoutchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/checkoutscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void guestlistchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/guestlistscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void serviceschange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/servicesscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void reservationchange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reservations/reservations.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void roomserviceschange(MouseEvent event){
+        HotelMS log = new HotelMS();
+        try {
+            log.changeScene("/reception/roomservicesscreen.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 // ______________________________________________________________________________________

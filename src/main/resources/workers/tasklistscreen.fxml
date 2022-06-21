@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iie.hotelms.controllers.WorkersTasklistController">
+
+    <children>
+        <TableView fx:id="table" layoutX="28.0" layoutY="23.0" prefHeight="666.0" prefWidth="1035.0">
+            <columns>
+                <TableColumn fx:id="columnRoomNumber" prefWidth="75.0" text="Nr Pokoju" />
+                <TableColumn id="FirstNameColumn" fx:id="columnId" prefWidth="84.0" text="ID zadania" />
+                <TableColumn fx:id="columnTask" prefWidth="426.0" text="Nazwa" />
+                <TableColumn id="DescriptionColumn" fx:id="columnDescription" prefWidth="332.0" text="Opis" />
+                <TableColumn fx:id="columnStatus" minWidth="0.0" prefWidth="117.0" text="Status" />
+            </columns>
+        </TableView>
+        <TextField fx:id="txtId" layoutX="1085.0" layoutY="154.0" prefHeight="45.0" prefWidth="184.0" promptText="Nr Zadania">
+            <font>
+                <Font size="20.0" />
+            </font></TextField>
+        <Button fx:id="btnDone" layoutX="1085.0" layoutY="418.0" mnemonicParsing="false" onAction="#taskdone" prefHeight="30.0" prefWidth="184.0" text="Wykonane" textFill="#141414">
+            <font>
+                <Font size="20.0" />
+            </font></Button>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+        <Text fill="RED" layoutX="1078.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Obsługa POKOJOWA -ZADANIA-" textAlignment="CENTER" wrappingWidth="198.00000125169754">
+            <font>
+                <Font name="Eras Light ITC" size="36.0" />
+            </font>
+        </Text>
+      <Button fx:id="btnInProgress" layoutX="1085.0" layoutY="283.0" mnemonicParsing="false" onAction="#taskinprogress" prefHeight="30.0" prefWidth="184.0" text="W trakcie" textFill="#141414">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnToDo" layoutX="1085.0" layoutY="223.0" mnemonicParsing="false" onAction="#tasktodo" prefHeight="30.0" prefWidth="184.0" text="Do zrobienia" textFill="#141414">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtPrice" layoutX="1085.0" layoutY="358.0" prefHeight="45.0" prefWidth="184.0" promptText="Cena">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Text layoutX="1085.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zadanie nr:" wrappingWidth="90.13671875" />
+      <Text layoutX="1085.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena:" />
+      <Pane fx:id="pane6" layoutX="1121.0" layoutY="14.0" onMouseClicked="#exit" onMouseEntered="#pane6_hover" onMouseExited="#pane6_mexit" prefHeight="104.0" prefWidth="108.0" style="-fx-background-color: lightgrey;">
+         <children>
+            <ImageView fitHeight="57.0" fitWidth="63.0" layoutX="26.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/logout.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="32.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wyloguj" />
+         </children>
+      </Pane>
+    </children>
+
+
+</AnchorPane>
