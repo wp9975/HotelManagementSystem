@@ -24,26 +24,33 @@
             <font>
                 <Font size="20.0" />
             </font></TextField>
-        <Button fx:id="btnDone" layoutX="1078.0" layoutY="291.0" mnemonicParsing="false" onAction="#taskdone" prefHeight="30.0" prefWidth="184.0" text="Wykonane" textFill="#141414">
+        <Button fx:id="btnDone" layoutX="1078.0" layoutY="349.0" mnemonicParsing="false" onAction="#taskdone" prefHeight="30.0" prefWidth="184.0" text="Wykonane" textFill="#141414">
             <font>
                 <Font size="20.0" />
             </font></Button>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-        <Text fill="RED" layoutX="1078.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SERWIS POKOJOWY -ZADANIA-" textAlignment="CENTER" wrappingWidth="198.00000125169754">
+        <Text fill="RED" layoutX="1078.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Obsługa POKOJOWA -ZADANIA-" textAlignment="CENTER" wrappingWidth="198.00000125169754">
             <font>
                 <Font name="Eras Light ITC" size="36.0" />
             </font>
         </Text>
-      <Button fx:id="btnInProgress" layoutX="1078.0" layoutY="229.0" mnemonicParsing="false" onAction="#taskinprogress" prefHeight="30.0" prefWidth="184.0" text="W trakcie" textFill="#141414">
+      <Button fx:id="btnInProgress" layoutX="1078.0" layoutY="214.0" mnemonicParsing="false" onAction="#taskinprogress" prefHeight="30.0" prefWidth="184.0" text="W trakcie" textFill="#141414">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnToDo" layoutX="1078.0" layoutY="169.0" mnemonicParsing="false" onAction="#tasktodo" prefHeight="30.0" prefWidth="184.0" text="Do zrobienia" textFill="#141414">
+      <Button fx:id="btnToDo" layoutX="1078.0" layoutY="154.0" mnemonicParsing="false" onAction="#tasktodo" prefHeight="30.0" prefWidth="184.0" text="Do zrobienia" textFill="#141414">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
+      <TextField fx:id="txtPrice" layoutX="1078.0" layoutY="289.0" prefHeight="45.0" prefWidth="184.0" promptText="Cena">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Text layoutX="1078.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zadanie nr:" wrappingWidth="90.13671875" />
+      <Text layoutX="1078.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena:" />
     </children>
 
 

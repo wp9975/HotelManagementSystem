@@ -1,6 +1,7 @@
 package com.iie.hotelms.controllers;
 
 
+import com.iie.hotelms.reception.RoomGuest;
 import com.iie.hotelms.services.TaskList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,12 +53,17 @@ public class WorkersTasklistController implements Initializable {
     @FXML
     private TextField txtId;
 
+    @FXML
+    private TextField txtPrice;
+
     int myIndex;
     PreparedStatement pst;
 
     @FXML
     void taskdone(ActionEvent event) {
-
+        Integer id_reservation = 1;
+        Float price = Float.valueOf(txtPrice.getText());
+        Integer id_room = 1;
         Integer id =(Integer.parseInt(txtId.getText()));
 
         try{
@@ -68,18 +74,76 @@ public class WorkersTasklistController implements Initializable {
 
             pst.executeUpdate();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-
-            alert.setHeaderText("Zadanie wykonane");
-
-            alert.showAndWait();
 
             table();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+        try
+        {
+            pst = dbLink.prepareStatement("select id_room from room_service where id_room_service=?");
+            pst.setInt(1,id);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next())
+                {
+
+                    id_room = rs.getInt("id_room");
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        try
+        {
+            pst = dbLink.prepareStatement("select reservation.id_reservation from reservation join room on reservation.id_room=room.id_room where reservation.id_room=?;");
+            pst.setInt(1,id_room);
+            ResultSet rs = pst.executeQuery();
+            {
+                while (rs.next())
+                {
+
+                   id_reservation = rs.getInt("id_reservation");
+
+                }
+            }
+        }
+
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        try{
+            pst = dbLink.prepareStatement("update reservation set bill = bill + ? where id_reservation = ?");
+            pst.setFloat(1, price);
+            pst.setInt(2, id_reservation);
+
+
+            pst.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+
+            alert.setHeaderText("Zadanie wykonane. Naliczono opłatę.");
+
+            alert.showAndWait();
+
+
+            table();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
 
 
     }

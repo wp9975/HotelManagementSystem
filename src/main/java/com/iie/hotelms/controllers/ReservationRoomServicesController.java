@@ -73,6 +73,7 @@ public class ReservationRoomServicesController implements Initializable {
     @FXML
     private TextField txtIdRoom;
 
+
     @FXML
     private ChoiceBox txtType;
 
