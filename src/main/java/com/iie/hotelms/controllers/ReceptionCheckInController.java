@@ -86,7 +86,7 @@ public class ReceptionCheckInController implements Initializable {
     public void setChoiceBox(){
 
         try {
-            pst = dbLink.prepareStatement("select type from hotelms.roomtype;");
+            pst = dbLink.prepareStatement("select type from roomtype;");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next()) {
@@ -107,7 +107,7 @@ public class ReceptionCheckInController implements Initializable {
         int id_room_type = 1 ;
 
         try {
-            pst = dbLink.prepareStatement("select id_room_type from hotelms.roomtype where type= ?;");
+            pst = dbLink.prepareStatement("select id_room_type from roomtype where type= ?;");
             pst.setString(1, type);
             ResultSet rs = pst.executeQuery();
             {
@@ -124,13 +124,14 @@ public class ReceptionCheckInController implements Initializable {
         ObservableList<Room> rooms = FXCollections.observableArrayList();
         try
         {
-            pst = dbLink.prepareStatement("select room_number, capacity, price from hotelms.room where id_room_type = ? AND status = 'wolny' ");
+            pst = dbLink.prepareStatement("select id_room, room_number, capacity, price from room where id_room_type = ? AND status = 1 ");
             pst.setInt(1, id_room_type);
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next())
                 {
                     Room st = new Room();
+                    st.setIdRoom(rs.getInt("id_room"));
                     st.setRoomNumber(rs.getString("room_number"));
                     st.setCapacity(rs.getInt("capacity"));
                     st.setPrice(rs.getFloat("price"));
@@ -186,7 +187,7 @@ public class ReceptionCheckInController implements Initializable {
         System.out.println(id_room);
 
         try{
-            pst = dbLink.prepareStatement("insert into holetms.guest(first_name, last_name, address, city, country, phone, email) values (?,?,?,?,?,?,?)");
+            pst = dbLink.prepareStatement("insert into guest(first_name, last_name, address, city, country, phone, email) values (?,?,?,?,?,?,?)");
             pst.setString(1,name);
             pst.setString(2,lastName);
             pst.setString(3,address);
@@ -200,7 +201,7 @@ public class ReceptionCheckInController implements Initializable {
         }
 
         try {
-            pst = dbLink.prepareStatement("select id_guest from hotelms.guest where phone= ?;");
+            pst = dbLink.prepareStatement("select id_guest from guest where phone= ?;");
             pst.setString(1, phone);
             ResultSet rs = pst.executeQuery();
             {
@@ -239,7 +240,7 @@ public class ReceptionCheckInController implements Initializable {
         }
 
         try {
-            pst = dbLink.prepareStatement("update hotelms.room set status = 2 where id_room = ? ");
+            pst = dbLink.prepareStatement("update room set status = 2 where id_room = ? ");
             pst.setInt(1, id_room);
             pst.executeUpdate();
         } catch (SQLException e) {

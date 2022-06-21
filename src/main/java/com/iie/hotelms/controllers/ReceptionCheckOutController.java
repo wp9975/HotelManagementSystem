@@ -211,7 +211,7 @@ public class ReceptionCheckOutController implements Initializable {
         ObservableList<CheckOutTable> checkouttab = FXCollections.observableArrayList();
         try
         {
-            pst = dbLink.prepareStatement("select hotelms.guest.id_guest, hotelms.guest.first_name, hotelms.guest.last_name, hotelms.guest.address ,hotelms.room.room_number, hotelms.room.price, hotelms.reservation.id_reservation, hotelms.reservation.check_in, hotelms.reservation.bill  from hotelms.reservation join hotelms.guest on hotelms.reservation.id_guest=hotelms.guest.id_guest join hotelms.room on hotelms.reservation.id_room=hotelms.room.id_room;");
+            pst = dbLink.prepareStatement("select guest.id_guest, guest.first_name, guest.last_name, guest.address ,room.room_number, room.price, reservation.id_reservation, reservation.check_in, reservation.bill  from reservation join guest on reservation.id_guest=guest.id_guest join room on reservation.id_room=room.id_room;");
             ResultSet rs = pst.executeQuery();
             {
                 while (rs.next())
